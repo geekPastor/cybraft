@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        #modal {
+        #modal, #bgmodal {
        z-index: 1000; /* Assurez-vous que la modale est toujours au-dessus */
      }
 
@@ -59,6 +59,10 @@
     <div class="relative w-full h-60">
         
         <!-- Overlay -->
+        @if(!empty($picture))
+         <img src="/storage/{{$picture->picture}}"  class="w-full h-full object-cover">
+        @endif
+        
         <div class="absolute top-0 left-0 w-full h-full overlay"></div>
         <!-- Profile Information -->
         <div class="absolute inset-0 flex flex-col items-center justify-center w-full h-full"> 
@@ -74,6 +78,9 @@
                     <button id="editBtn" class="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 focus:outline-none">
                       +
                     </button>
+                    <button id="bgEditBtn" class="absolute bottom-0 right-24 bg-red-600 btn-red rounded-full p-2 hover:bg-red-700 focus:outline-none">
+                        +
+                    </button>
                     @endauth
                   </div>
                 
@@ -88,6 +95,23 @@
                         @csrf
                         <div class="mt-4 flex justify-end">
                           <button type="button" id="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Annuler</button>
+                          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Enregistrer</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <!--bg-->
+                  <div id="bgmodal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                    <div class="bg-white p-8 rounded-lg w-80">
+
+                      <h2 class="text-lg font-bold mb-4">Modifier le background</h2>
+                      
+                      <!-- Formulaire pour modifier l'image -->
+                      <form id="profileForm" action={{Route("background",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
+                        <input type="file" name="picture" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                        @csrf
+                        <div class="mt-4 flex justify-end">
+                          <button type="button" id="bgcloseModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Annuler</button>
                           <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Enregistrer</button>
                         </div>
                       </form>
@@ -262,8 +286,16 @@ document.getElementById('closeModal').addEventListener('click', function() {
     modal.classList.add('hidden');
     modal.classList.remove('flex'); // Retirer la classe flex pour éviter tout conflit
 });
-
-
+document.getElementById('bgEditBtn').addEventListener('click', function() {
+    const modal = document.getElementById('bgmodal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');  // Ajout de la classe flex pour centrer les éléments
+});
+document.getElementById('bgcloseModal').addEventListener('click', function() {
+    const modal = document.getElementById('bgmodal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex'); // Retirer la classe flex pour éviter tout conflit
+});
     </script>
 </body>
 </html>

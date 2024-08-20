@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class pictures extends Model
 {
     use HasFactory;
-    protected $fillable=['user_id',"picture"];
+    protected $fillable=['user_id',"picture",'role'];
 }

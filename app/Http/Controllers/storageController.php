@@ -24,4 +24,20 @@ class storageController extends Controller
             ],);
         return back()->with("success","profil fait");
     }
+    public function background(Request $request)
+    {
+
+        $data=$request->file("picture");
+        
+        $user=$request->route("user");
+        $chemin=$this->uppload($data);
+        pictures::updateOrCreate(
+            ['user_id'=>$user,"role"=>"background"],
+        [
+        'user_id'=>$user,
+        "picture"=>$chemin,
+        "role"=>"background"
+        ]);
+        return back()->with("success","background fait");
+    }
 }

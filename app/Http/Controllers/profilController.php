@@ -6,15 +6,18 @@ use App\Http\Requests\createRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\updateRequest;
+use App\Models\pictures;
 use App\Models\Profil;
 use App\Models\reseau;
 use Illuminate\Support\Facades\Hash;
 
 class profilController extends Controller
 {
-    public function show(User $user){
+    public function show(User $user,Request $request){
+        $id=(int)$user->id;
         $user=$user;
-        return view("welcome",['user'=>$user]);
+       $picture= pictures::where("user_id",$id)->where('role',"background")->first();
+        return view("welcome",['user'=>$user,'picture'=>$picture]);
     }
 
     public function update(User $user){
