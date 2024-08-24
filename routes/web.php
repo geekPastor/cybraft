@@ -17,14 +17,15 @@ Route::get("/login",[loginController::class,"login"])->name("newLog");
 Route::post("/picture-{user}",[storageController::class,"index"])->middleware("auth")->name("uppload");
 Route::post("/background-{user}",[storageController::class,"background"])->middleware("auth")->name("background");
 //compte utilisateur normal
-Route::prefix("/compte-{user}")->controller(profilController::class)->name("profil.")->group(function(){
+Route::prefix("/compte-{name}")->controller(profilController::class)->name("profil.")->group(function(){
     Route::get("","show")->name("compte");
     route::get("/update","update")->middleware("auth")->name("update");
     route::get("/qr","qr")->middleware("auth")->name("qr");
     route::post("/update","modif")->middleware("auth")->name("modif");
+    Route::post("/destroy","supprimeDestrroy")->name("supprimeDestrroy");
 });
 //compte administrateur
-Route::prefix("/dashboard-{user}")->controller(profilController::class)->name("profil.")->group(function(){
+Route::prefix("/dashboard-{name}")->controller(profilController::class)->name("profil.")->group(function(){
     route::get("/admin","admin")->name("admin");
     Route::post("/create","create")->name("create");
     Route::post("/destroy","destroy")->name("destroy");

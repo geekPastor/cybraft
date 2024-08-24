@@ -107,6 +107,7 @@
                       <h2 class="text-lg font-bold mb-4">Modifier le background</h2>
                       
                       <!-- Formulaire pour modifier l'image -->
+                    <span class="font-bold bg-yellow-100" role="alert"> NB:la hauteur de l'image doit inferieure ou egale a : et superieure ou egale a: </span>
                       <form id="profileForm" action={{Route("background",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
                         <input type="file" name="picture" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                         @csrf
@@ -133,9 +134,9 @@
     @auth
     <div id="menu" class="hidden z-50 absolute top-16 right-4 bg-white rounded-lg shadow-lg p-6 w-60 transform transition-transform duration-300">
         <ul class="flex flex-col items-start">
-            <li class="py-2 text-center text-xl"><a href="{{Route('profil.update',['user'=>$user->id])}}" class="block text-customBrown"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></li>
+            <li class="py-2 text-center text-xl"><a href="{{Route('profil.update',['name'=>$user->name])}}" class="block text-customBrown"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></li>
             
-            <li class="py-2 text-center text-xl"><a href="{{Route('profil.qr',['user'=>$user->id])}}" class="block text-customBrown"><i class="fa-solid fa-share-nodes"></i> Partager le profile</a></li>
+            <li class="py-2 text-center text-xl"><a href="{{Route('profil.qr',['name'=>$user->name])}}" class="block text-customBrown"><i class="fa-solid fa-share-nodes"></i> Partager le profile</a></li>
             
         </ul>
     </div>
@@ -213,17 +214,31 @@
                           @php
                               $tiktok="Tik Tok"
                           @endphp
-                            <a href={{$user->profil->reseau->Facebook ?? " "}}><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
-                            <a href={{$user->profil->reseau->twitter ?? " "}}><i class="fa-brands fa-x-twitter text-4xl text-black"></i></a>
-                            <a href={{$user->profil->reseau->Theads ?? " "}}><i class="fa-brands fa-threads text-4xl text-black"></i></a>
-                            <a href={{$user->profil->reseau->Instagram ?? " "}}><i class="fab fa-instagram text-4xl text-black"></i></a>
-                            <a href={{$user->profil->reseau->Linkedin ?? " "}}><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
+                            @if(!empty($user->profil->reseau->Facebook))                  
+                            <a href={{$user->profil->reseau->Facebook}}><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
+                            @endif
+                            @if(!empty($user->profil->reseau->twitter)) 
+                            <a href={{$user->profil->reseau->twitter}}><i class="fa-brands fa-x-twitter text-4xl text-black"></i></a>
+                            @endif
+                            @if(!empty($user->profil->reseau->Theads))
+                            <a href={{$user->profil->reseau->Theads}}><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                            @endif
+                            @if(!empty($user->profil->reseau->Instagram))
+                            <a href={{$user->profil->reseau->Instagram}}><i class="fab fa-instagram text-4xl text-black"></i></a>
+                            @endif
+                            @if(!empty($user->profil->reseau->Linkedin))
+                            <a href={{$user->profil->reseau->Linkedin}}><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
+                            @endif
                         </div>
-                        <div class="w-full flex justify-around mb-4"> 
-                            <a href="#"><i class="fab fa-snapchat text-4xl text-yellow-500"></i></a>
-                            <a href={{$user->profil->reseau->$tiktok ?? " "}}><i class="fab fa-tiktok text-4xl text-black"></i></a>
-                            <a  href={{$user->profil->reseau->Telegram ?? " "}}><i class="fab fa-telegram text-4xl text-blue-400"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp text-4xl text-green-500"></i></a>
+                        <div class="w-full flex justify-around mb-4">
+
+                            @if(!empty($user->profil->reseau->$tiktok))
+                            <a href={{$user->profil->reseau->$tiktok}}><i class="fab fa-tiktok text-4xl text-black"></i></a>
+                            @endif
+                            @if(!empty($user->profil->reseau->Telegram))
+                            <a  href={{$user->profil->reseau->Telegram}}><i class="fab fa-telegram text-4xl text-blue-400"></i></a>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>

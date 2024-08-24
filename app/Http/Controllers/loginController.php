@@ -16,11 +16,11 @@ class loginController extends Controller
               $user = User::where('email', $email)->first();
               if($user->role=="admin"){
                 $request->session()->regenerate();
-                return redirect()->route("profil.admin",["user"=>$user->id]);
+                return redirect()->route("profil.admin",["name"=>$user->name]);
               }
               elseif($user->role="users"){
                 $request->session()->regenerate();
-                return redirect()->route("profil.compte",["user"=>$user->id]);
+                return redirect()->route("profil.compte",["name"=>$user->name]);
               }
            }
            else{

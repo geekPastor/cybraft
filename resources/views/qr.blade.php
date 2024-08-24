@@ -15,6 +15,10 @@
                 <div class="space-y-4">
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Accéder à Mon Dashboard</button>
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Obtenir ma Carte Cybcraft</button>
+                    <form action={{Route("profil.supprimeDestrroy",['name'=>$user->name])}} method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+                        @csrf
+                    <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">supprimer mon profil</button>
+                    </form>
                     <a id="shareButton" class="w-full bg-yellow-700 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-2 inline-block text-center" href="#">Partager Mon Profil</a>
                     <!-- Menu de partage -->
                     <div id="shareMenu" class="hidden mt-2 bg-white rounded shadow-lg">
@@ -35,7 +39,7 @@
     </div>
     <script>
         // Récupérer le lien généré par Laravel
-        var profileLink = '{{ Route("profil.compte", ["user" => $user]) }}';
+        var profileLink = '{{ Route("profil.compte", ["name" => $user->name]) }}';
 
         // Affichage du menu de partage
         document.getElementById('shareButton').addEventListener('click', function(event) {

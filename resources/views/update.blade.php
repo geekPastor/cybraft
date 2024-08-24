@@ -3,7 +3,7 @@
 
 <div class="bg-white p-8 rounded-lg shadow-lg max-w-xl w-full m-8">
     <h1 class="text-2xl font-bold mb-6 text-center">Remplissez les informations ci-dessous</h1>
-    <form action={{ Route("profil.modif", ['user' => $user->id]) }} method="POST">
+    <form action={{ Route("profil.modif", ['name' => $user->name]) }} method="POST">
         @csrf
         <div>
             <h2 class="text-lg font-semibold">Mon Identité</h2>

@@ -13,29 +13,35 @@ use Illuminate\Support\Facades\Hash;
 
 class profilController extends Controller
 {
-    public function show(User $user,Request $request){
+    public function show(Request $request){
+        $name=$request->route("name");
+       $user= User::where("name",$name)->firstOrFail();
         $id=(int)$user->id;
-        $user=$user;
        $picture= pictures::where("user_id",$id)->where('role',"background")->first();
         return view("welcome",['user'=>$user,'picture'=>$picture]);
     }
 
-    public function update(User $user){
-        $user=$user;
+    public function update(Request $request){
+        $name=$request->route("name");
+        $user= User::where("name",$name)->firstOrFail();
+         $id=(int)$user->id;
         return view("update",['user'=>$user]);
     }
     public function admin(Request $request){
-        $id=(int)$request->route("user");
+        
+        $name=$request->route("name");
+        $user= User::where("name",$name)->firstOrFail();
+        $id=(int)$user->id;
         $users=User::all();
         $total=User::count();
-        return view("admin.show",['id'=>$id,'users'=>$users,"total"=>$total]);
+        return view("admin.show",['id'=>$id,'users'=>$users,"total"=>$total,'user'=>$user]);
     }
    public function modif(updateRequest $request)
    {
     $validated = $request->validated();
-
-    $id=$request->route("user");
-
+    $name=$request->route("name");
+    $user= User::where("name",$name)->firstOrFail();
+     $id=(int)$user->id;
     $user = User::where("id",$id)->update(
         [
         'email' => $validated['email'],
@@ -78,13 +84,15 @@ class profilController extends Controller
             return back()->with("success","modification reussie");
    }
    public function create(createRequest $request){
+    
     $data=$request->validated();
     $data["role"]="users";
     User::create($data);
     return back()->with("success","utilisateur cree");
    }
    public function qr(Request $request){
-    $user=(int)$request->route("user");
+    $name=$request->route("name");
+    $user= User::where("name",$name)->firstOrFail();
     return view("qr",['user'=>$user]);
    }
    public function destroy(Request $request)
@@ -97,4 +105,15 @@ class profilController extends Controller
     }
     return back()->with("error","utilisateur pas trouve");
    }
+   public function supprimeDestrroy(Request $request)
+   {
+    $name=$request->route("name");
+    $user= User::where("name",$name)->firstOrFail();
+    if($user){
+        $user->delete();
+        return back()->with("success","user supprime");
+    }
+    return back()->with("error","utilisateur pas trouve");
+   }
 }
+
