@@ -289,26 +289,30 @@
                 <button class="text-gray-500 hover:text-gray-700" onclick="togglePopup()">X</button>
             </div>
 
-            <form action="" method="">
+            <form action={{Route("profil.mail",['name'=>$user->name])}} method="POST">
+                @csrf
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nom Complet :</label>
-                    <input type="text" id="name" class="w-full border border-gray-300 rounded-md p-2" placeholder="Nom complet">
+                    <input type="text" id="name" class="w-full border border-gray-300 rounded-md p-2" name="name" placeholder="Nom complet">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Email :</label>
-                    <input type="email" id="email" class="w-full border border-gray-300 rounded-md p-2" placeholder="Adresse email">
+                    <input type="email" id="email" class="w-full border border-gray-300 rounded-md p-2" name="email" placeholder="Adresse email">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="phone">Numéro de Téléphone :</label>
-                    <input type="tel" id="phone" class="w-full border border-gray-300 rounded-md p-2" placeholder="Numéro de Téléphone">
+                    <input type="tel" id="phone" class="w-full border border-gray-300 rounded-md p-2"  name="phone" placeholder="Numéro de Téléphone">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="address">Adresse :</label>
-                    <input type="text" id="address" class="w-full border border-gray-300 rounded-md p-2" placeholder="Adresse, Code postale, Ville">
+                    <input type="text" id="address" class="w-full border border-gray-300 rounded-md p-2" name="adresse" placeholder="Adresse, Code postale, Ville">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="notes">Notes :</label>
-                    <textarea id="notes" class="w-full border border-gray-300 rounded-md p-2" placeholder="Ajouter une note"></textarea>
+                    <textarea id="notes" class="w-full border border-gray-300 rounded-md p-2" name="notes" placeholder="Ajouter une note"></textarea>
+                </div>
+                <div class="mb-4">
+                    <input type="text" id="address"  class=" hidden w-full border border-gray-300 rounded-md p-2" name="toMail" value={{$user->email}}>
                 </div>
                 <div class="flex justify-end">
                     <button type="button" class="bg-red-500 text-white rounded-md px-4 py-2 mr-2" onclick="togglePopup()">Annuler</button>

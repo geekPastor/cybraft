@@ -22,6 +22,7 @@ Route::prefix("/compte-{name}")->controller(profilController::class)->name("prof
     route::get("/update","update")->middleware("auth")->name("update");
     route::get("/qr","qr")->middleware("auth")->name("qr");
     route::post("/update","modif")->middleware("auth")->name("modif");
+    Route::post("/mail","mail")->middleware("auth")->name("mail");
     Route::post("/destroy","supprimeDestrroy")->name("supprimeDestrroy");
 });
 //compte administrateur

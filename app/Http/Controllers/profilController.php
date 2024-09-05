@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\createRequest;
+use App\Http\Requests\MailRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\updateRequest;
+use App\Mail\sendMail;
 use App\Models\pictures;
 use App\Models\Profil;
 use App\Models\reseau;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class profilController extends Controller
 {
@@ -115,5 +118,9 @@ class profilController extends Controller
     }
     return back()->with("error","utilisateur pas trouve");
    }
+   public function mail(MailRequest $request){
+    Mail::send(new sendMail($request->validated()));
+    return back()->with("success","votre email a bien ete envoye");
+}
 }
 
