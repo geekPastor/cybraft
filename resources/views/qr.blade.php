@@ -11,7 +11,9 @@
         <div class="w-full max-w-md px-4">
             <div class="bg-white p-8 rounded shadow-md text-center">
                 <h1 class="text-3xl font-bold mb-6">Cyb<span class="text-black">Craft</span></h1>
-                <img src="/qr.png" alt="QR Code" class="mx-auto mb-6 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
+                <div class="flex  justify-center mb-2">
+                   {!! $qrCode !!}
+                </div>
                 <div class="space-y-4">
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Accéder à Mon Dashboard</button>
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Obtenir ma Carte Cybcraft</button>

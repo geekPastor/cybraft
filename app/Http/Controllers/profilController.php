@@ -13,15 +13,25 @@ use App\Models\Profil;
 use App\Models\reseau;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class profilController extends Controller
 {
+    // Générer un QR code unique pour cet utilisateur avec son ID ou autre information
+    public function generateQrForUser($url,$size=300)
+    {
+        $qrCode = QrCode::size($size)->generate($url);
+        
+        return $qrCode;
+    }
     public function show(Request $request){
         $name=$request->route("name");
        $user= User::where("name",$name)->firstOrFail();
         $id=(int)$user->id;
        $picture= pictures::where("user_id",$id)->where('role',"background")->first();
-        return view("welcome",['user'=>$user,'picture'=>$picture]);
+       $url=$request->url();
+       $qrCode=$this->generateQrForUser($url);
+        return view("welcome",['user'=>$user,'picture'=>$picture,'qrCode'=>$qrCode]);
     }
 
     public function update(Request $request){
@@ -94,9 +104,13 @@ class profilController extends Controller
     return back()->with("success","utilisateur cree");
    }
    public function qr(Request $request){
+    
+
     $name=$request->route("name");
     $user= User::where("name",$name)->firstOrFail();
-    return view("qr",['user'=>$user]);
+    $url=route("profil.compte",['name'=>$name]);
+    $qrCode=$this->generateQrForUser($url,100);
+    return view("qr",['user'=>$user,"qrCode"=>$qrCode]);
    }
    public function destroy(Request $request)
    {

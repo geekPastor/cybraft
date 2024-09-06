@@ -72,7 +72,8 @@
         <div class="p-6 flex flex-col justify-center items-center">
             <h2 class="text-xl font-bold pb-4">CybCard</h2>
             <div class="w-40 h-40 bg-gray-300 mx-auto overflow-hidden">
-                <img src="./qr.jpeg" alt="profile">
+             
+                {!! $qrCode !!}
             </div>
             <div class="flex justify-center flex-col mt-6 gap-6">
                 
