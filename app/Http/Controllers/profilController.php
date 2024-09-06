@@ -86,6 +86,7 @@ class profilController extends Controller
             );
             return back()->with("success","modification reussie");
    }
+   
    public function create(createRequest $request){
     
     $data=$request->validated();
@@ -93,11 +94,13 @@ class profilController extends Controller
     User::create($data);
     return back()->with("success","utilisateur cree");
    }
+
    public function qr(Request $request){
     $name=$request->route("name");
     $user= User::where("name",$name)->firstOrFail();
     return view("qr",['user'=>$user]);
    }
+
    public function destroy(Request $request)
    {
     $id=(int)$request->route("user");
@@ -108,6 +111,7 @@ class profilController extends Controller
     }
     return back()->with("error","utilisateur pas trouve");
    }
+
    public function supprimeDestrroy(Request $request)
    {
     $name=$request->route("name");
@@ -118,6 +122,7 @@ class profilController extends Controller
     }
     return back()->with("error","utilisateur pas trouve");
    }
+
    public function mail(MailRequest $request){
     Mail::send(new sendMail($request->validated()));
     return back()->with("success","votre email a bien ete envoye");

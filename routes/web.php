@@ -17,7 +17,7 @@ Route::get("/login",[loginController::class,"login"])->name("newLog");
 Route::post("/picture-{user}",[storageController::class,"index"])->middleware("auth")->name("uppload");
 Route::post("/background-{user}",[storageController::class,"background"])->middleware("auth")->name("background");
 //compte utilisateur normal
-Route::prefix("/compte-{name}")->controller(profilController::class)->name("profil.")->group(function(){
+Route::prefix("/profil/{name}")->controller(profilController::class)->name("profil.")->group(function(){
     Route::get("","show")->name("compte");
     route::get("/update","update")->middleware("auth")->name("update");
     route::get("/qr","qr")->middleware("auth")->name("qr");

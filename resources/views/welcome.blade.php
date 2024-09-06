@@ -79,7 +79,7 @@
                 <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',['name'=>$user->name])}}">
                     <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
                 </a>
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="#">
+                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
                     <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                 </a>
                 <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',['name'=>$user->name])}}">
@@ -196,6 +196,9 @@
                   @if(!empty($user->profil->reseau->Linkedin))
                   <a href={{$user->profil->reseau->Linkedin}} class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
                   @endif
+                  @if(!empty($user->profil->reseau->Telegram))
+                  <a href={{$user->profil->reseau->Telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
+                  @endif
                 </div>
             </div>
             <div class="w-full md:w-6/12">
@@ -220,7 +223,7 @@
         </div>
     
         <div class="flex justify-center items-center flex-col mt-6 gap-4 w-full">
-            <a class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300" href="tel:{{$user->profil->number ?? " "}}">
+            <a class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
                 <i class="fa-solid fa-download"></i>Enregistrer contact
             </a>
 
@@ -229,10 +232,10 @@
             </button>
         </div>
         
-        <div class="mt-12 flex justify-center flex-col">
+        <div class="mt-12 flex justify-center flex-col-reverse">
             <div class="bg-white rounded-lg p-6 md:order-2 w-full">
                 <h2 class="text-2xl font-bold mb-4 text-blue-950 text-center">Information sur l'entité</h2>
-                <p class="mb-4 text-center ">Maker-Corporation <a href="./about.html" class="hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
+                <p class="mb-4 text-center uppercase">{{$user->profil->nom_entite ?? ''}} <a href="./about.html" class="lowercase hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
             </div>
 
             <div>
@@ -325,7 +328,7 @@
 
     <footer class="bg-blue-950 py-8 mt-16">
         <div class="container mx-auto text-center">
-            <img src="logo.png" alt="Logo" class="mx-auto mb-4" style="max-width: 150px;">
+            <img src="{{ asset('logo.png') }}" alt="Logo" class="mx-auto mb-4" style="max-width: 150px;">
             <p class="text-gray-400">&copy; 2024 Cybcraft. All rights reserved.</p>
         </div>
     </footer>
