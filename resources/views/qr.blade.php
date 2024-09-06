@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-    <div class="flex items-center justify-center py-4 min-h-screen">
-        <div class="w-full max-w-md px-4">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="w-full h-4/5 max-w-md">
             <div class="bg-white p-8 rounded shadow-md text-center">
                 <h1 class="text-3xl font-bold mb-6">Cyb<span class="text-black">Craft</span></h1>
                 <div class="flex  justify-center mb-2">
@@ -34,11 +34,13 @@
         </div>
     </div>
     
-    <div class="flex bg-black items-center justify-center h-64 w-full">
-        <div class="py-4 px-6">
-            <img src="logo.png" alt="Logo" class="mx-auto h-16 sm:h-20 md:h-24 lg:h-32 xl:h-40">
+    <footer class="bg-blue-950 py-8 mt-16">
+        <div class="container mx-auto text-center">
+            <img src="{{ asset('logo.png') }}" alt="Logo" class="mx-auto mb-4" style="max-width: 150px;">
+            <p class="text-gray-400">&copy; 2024 Cybcraft. All rights reserved.</p>
         </div>
-    </div>
+    </footer>
+
     <script>
         // Récupérer le lien généré par Laravel
         var profileLink = '{{ Route("profil.compte", ["name" => $user->name]) }}';
