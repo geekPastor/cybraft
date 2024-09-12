@@ -30,7 +30,7 @@ class profilController extends Controller
         $id=(int)$user->id;
        $picture= pictures::where("user_id",$id)->where('role',"background")->first();
        $url=$request->url();
-       $qrCode=$this->generateQrForUser($url);
+       $qrCode=$this->generateQrForUser($url,160);
         return view("welcome",['user'=>$user,'picture'=>$picture,'qrCode'=>$qrCode]);
     }
 
@@ -117,8 +117,8 @@ class profilController extends Controller
 
    public function destroy(Request $request)
    {
-    $id=(int)$request->route("user");
-    $user=User::find($id);
+    $name=$request->route("name");
+    $user= User::where("name",$name)->firstOrFail();
     if($user){
         $user->delete();
         return back()->with("success","user supprime");

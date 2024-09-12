@@ -56,7 +56,7 @@
     </style>
 </head>
 <body class="bg-blue-50">
-
+   @auth
     <div class="flex justify-end p-4 text-black cursor-pointer">
         <button id="menuIcon">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
@@ -64,9 +64,7 @@
         </svg>
         </button>
     </div>
-
-
-
+   @endauth
     <div id="sideMenu" class="hidden z-50 absolute top-16 right-4 bg-white rounded-lg shadow-lg p-6 w-80 transform transition-transform duration-300">
         <!-- Contenu du menu latéral -->
         <div class="p-6 flex flex-col justify-center items-center">
