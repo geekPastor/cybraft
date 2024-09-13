@@ -15,8 +15,6 @@
                    {!! $qrCode !!}
                 </div>
                 <div class="space-y-4">
-                    <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Accéder à Mon Dashboard</button>
-                    <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">Obtenir ma Carte Cybcraft</button>
                     <form action={{Route("profil.supprimeDestrroy",['name'=>$user->name])}} method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
                         @csrf
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">supprimer mon profil</button>
