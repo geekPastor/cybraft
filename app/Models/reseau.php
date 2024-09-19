@@ -12,12 +12,13 @@ class reseau extends Model
     protected $table="reseaux";
     protected $fillable = [
         'profil_id',
-        'Facebook',
+        'facebook',
         'twitter', 
-        'Instagram',
-        'Tik Tok',
-        'Theads',
-        'Telegram',
+        'instagram',
+        'tiktok',
+        'theads',
+        'telegram',
+        'whatsapp',
     ];
     public function profil()
     {

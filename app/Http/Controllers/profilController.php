@@ -24,9 +24,7 @@ class profilController extends Controller
         
         return $qrCode;
     }
-    public function show(Request $request){
-        $name=$request->route("name");
-       $user= User::where("name",$name)->firstOrFail();
+    public function show(User $user, Request $request){
         $id=(int)$user->id;
        $picture= pictures::where("user_id",$id)->where('role',"background")->first();
        $url=$request->url();
@@ -34,28 +32,20 @@ class profilController extends Controller
         return view("welcome",['user'=>$user,'picture'=>$picture,'qrCode'=>$qrCode]);
     }
 
-    public function update(Request $request){
-        $name=$request->route("name");
-        $user= User::where("name",$name)->firstOrFail();
+    public function update(User $user){
          $id=(int)$user->id;
         return view("update",['user'=>$user]);
     }
-    public function admin(Request $request){
-        
-        $name=$request->route("name");
-        $user= User::where("name",$name)->firstOrFail();
-        $id=(int)$user->id;
+    public function admin(User $user){
         $users=User::all();
         $total=User::count();
-        return view("admin.show",['id'=>$id,'users'=>$users,"total"=>$total,'user'=>$user]);
+        return view("admin.show",['id'=>$user->id,'users'=>$users,"total"=>$total,'user'=>$user]);
     }
-   public function modif(updateRequest $request)
+   public function modif(User $user, updateRequest $request)
    {
     $validated = $request->validated();
-    $name=$request->route("name");
-    $user= User::where("name",$name)->firstOrFail();
-     $id=(int)$user->id;
-    $user = User::where("id",$id)->update(
+    
+    $user->update(
         [
         'email' => $validated['email'],
         'name' => $validated['name'],
@@ -63,9 +53,9 @@ class profilController extends Controller
     );
             // Créer ou mettre à jour le profil
             $profil = Profil::updateOrCreate(
-                ['user_id'=>$id],
+                ['user_id'=>$user->id],
                 [
-                    'user_id' => $id,
+                    'user_id' => $user->id,
                     'bio' => $validated['description'],
                     'profession' => $validated['profession'],
                     'sexe' => $validated['sexe'],
@@ -81,18 +71,12 @@ class profilController extends Controller
             );
 
             // Créer ou mettre à jour les identifiants reseaux
+            $profilData = $validated;
+            $profilData['profil_id'] = $profil->id;
+
             $reseau=reseau::updateOrCreate(
                 ['profil_id'=>$profil->id],
-                [
-                    'profil_id'=>$profil->id,
-                    'Facebook' => $validated['facebook'],
-                    'twitter' => $validated['twitter'],
-                    'Instagram' => $validated['instagram'],
-                    'Linkedin' => $validated['linkedin'],
-                    'Tik Tok' => $validated['tiktok'],
-                    'Theads' => $validated['theads'],
-                    'Telegram' => $validated['telegram'],
-                ]
+                $profilData
             );
             return back()->with("success","modification reussie");
    }
@@ -105,36 +89,22 @@ class profilController extends Controller
     return back()->with("success","utilisateur cree");
    }
 
-   public function qr(Request $request){
-    
-
-    $name=$request->route("name");
-    $user= User::where("name",$name)->firstOrFail();
-    $url=route("profil.compte",['name'=>$name]);
+   public function qr(User $user, Request $request){
+    $url=route("profil.compte",$user);
     $qrCode=$this->generateQrForUser($url,100);
     return view("qr",['user'=>$user,"qrCode"=>$qrCode]);
    }
 
-   public function destroy(Request $request)
+   public function destroy(User $user)
    {
-    $name=$request->route("name");
-    $user= User::where("name",$name)->firstOrFail();
-    if($user){
         $user->delete();
-        return back()->with("success","user supprime");
-    }
-    return back()->with("error","utilisateur pas trouve");
+        return back()->with("success","user supprime");;
    }
 
-   public function supprimeDestrroy(Request $request)
+   public function supprimeDestrroy(User $user)
    {
-    $name=$request->route("name");
-    $user= User::where("name",$name)->firstOrFail();
-    if($user){
         $user->delete();
         return back()->with("success","user supprime");
-    }
-    return back()->with("error","utilisateur pas trouve");
    }
 
    public function mail(MailRequest $request){

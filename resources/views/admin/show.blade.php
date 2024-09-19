@@ -30,7 +30,7 @@
             <!-- Section Création d'utilisateur -->
             <div id="section-create-user" class="dashboard-section">
                 <h2 class="text-3xl font-semibold text-blue-600 mb-4">Créer un utilisateur</h2>
-                <form action="{{Route('profil.create',['name' => $user->name]) }}" method="POST">
+                <form action="{{Route('profil.create',$user) }}" method="POST">
                     @csrf
                     <div class="mb-6">
                         <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
@@ -69,7 +69,7 @@
                             <td class="px-6 py-4 text-gray-800">{{ $user->name }}</td>
                             <td class="px-6 py-4 text-gray-800">{{ $user->email }}</td>
                             <td class="px-6 py-4 text-center">
-                                <form action={{ Route('profil.destroy', ['name' => $user->name]) }} method="POST"
+                                <form action={{ Route('profil.destroy', $user) }} method="POST"
                                     onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                                     @csrf
                                     <button type="submit"

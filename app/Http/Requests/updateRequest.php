@@ -34,15 +34,15 @@ class updateRequest extends FormRequest
         'competences' => 'required|string',
         'nom_entite' => 'required|string|max:255',
         'services' => 'required|string|max:255',
-        'facebook' => 'required|string|max:255',
-        'twitter' => 'required|string|max:255',
-        'instagram' => 'required|string|max:255',
-        'linkedin' => 'required|string|max:255',
-        'tiktok' => 'required|string|max:255',
+        'facebook' => 'nullable|string|max:255',
+        'twitter' => 'nullable|string|max:255',
+        'instagram' => 'nullable|string|max:255',
+        'linkedin' => 'nullable|string|max:255',
+        'tiktok' => 'nullable|string|max:255',
         'description_entite' => 'required|string|max:255',
-        'theads' => 'required|string|max:255',
-        'telegram' => 'required|string|max:255',
-        'whatsapp' => 'required|string|max:255',
+        'theads' => 'nullable|string|max:255',
+        'telegram' => 'nullable|string|max:255',
+        'whatsapp' => 'nullable|string|max:255',
     ];
 }
 

@@ -75,13 +75,13 @@
             </div>
             <div class="flex justify-center flex-col mt-6 gap-6">
                 
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',['name'=>$user->name])}}">
+                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user)}}">
                     <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
                 </a>
                 <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
                     <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                 </a>
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',['name'=>$user->name])}}">
+                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user)}}">
                     <i class="fa-solid fa-share-from-square"></i> Modifier
                 </a>
             </div>
@@ -104,7 +104,7 @@
         <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white p-8 rounded-lg w-80">
 
-              <h2 class="text-lg font-bold mb-4">Modifier la photo de profil</h2>
+              <h2 class="text-lg font-bold mb   -4">Modifier la photo de profil</h2>
               
               
               <form id="profileForm" action={{Route("uppload",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
@@ -174,30 +174,33 @@
             </div>
 
             <div class="pb-2 block md:hidden">
+                <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
                 <!-- Ajoutez les icônes des réseaux sociaux ici -->
-                <h2 class="text-gray-500 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
-                <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-indigo-950">
-                    @php
-                    $tiktok="Tik Tok"
-                @endphp
-                  @if(!empty($user->profil->reseau->Facebook))                  
-                  <a href={{$user->profil->reseau->Facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->twitter)) 
-                  <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-x-twitter text-4xl text-black"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->Theads))
-                  <a href={{$user->profil->reseau->Theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->Instagram))
-                  <a href={{$user->profil->reseau->Instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->Linkedin))
-                  <a href={{$user->profil->reseau->Linkedin}} class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->Telegram))
-                  <a href={{$user->profil->reseau->Telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
-                  @endif
+                <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
+                    @if(!empty($user->profil->reseau->facebook))                  
+                      <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->twitter)) 
+                      <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->theads))
+                      <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->instagram))
+                      <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->linkedin))
+                      <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->telegram))
+                      <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->whatsapp))
+                      <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
+                      @endif
+                      @if(!empty($user->profil->reseau->tiktok))
+                      <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
+                      @endif
                 </div>
             </div>
             <div class="w-full md:w-6/12">
@@ -211,13 +214,30 @@
             
             <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
             <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
-                <a href={{$user->profil->reseau->Instagram ?? "#"}} class="text-3xl insta"><i class="fab fa-instagram"></i></a>
-                <a href={{$user->profil->reseau->Linkedin ?? "#"}} class="text-3xl link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-3xl"><i class="fas fa-globe"></i></a>
-                <a href="#" class="text-3xl what"><i class="fab fa-whatsapp"></i></a>
-                <a href={{$user->profil->reseau->twitter ?? "#"}}  class="text-3xl twit"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-3xl snap"><i class="fab fa-snapchat"></i></a>
-                <a href="#" class="text-3xl you"><i class="fab fa-youtube"></i></a>
+                @if(!empty($user->profil->reseau->facebook))                  
+                  <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->twitter)) 
+                  <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->theads))
+                  <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->instagram))
+                  <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->linkedin))
+                  <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->telegram))
+                  <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->whatsapp))
+                  <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
+                  @endif
+                  @if(!empty($user->profil->reseau->tiktok))
+                  <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
+                  @endif
             </div>
         </div>
     
@@ -291,7 +311,7 @@
                 <button class="text-gray-500 hover:text-gray-700" onclick="togglePopup()">X</button>
             </div>
 
-            <form action={{Route("profil.mail",['name'=>$user->name])}} method="POST">
+            <form action={{Route("profil.mail",$user)}} method="POST">
                 @csrf
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nom Complet :</label>

@@ -15,7 +15,7 @@
                    {!! $qrCode !!}
                 </div>
                 <div class="space-y-4">
-                    <form action={{Route("profil.supprimeDestrroy",['name'=>$user->name])}} method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+                    <form action={{Route("profil.supprimeDestrroy",$user)}} method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
                         @csrf
                     <button class="bg-yellow-700 text-white py-2 px-4 rounded w-full">supprimer mon profil</button>
                     </form>
@@ -41,7 +41,7 @@
 
     <script>
         // Récupérer le lien généré par Laravel
-        var profileLink = '{{ Route("profil.compte", ["name" => $user->name]) }}';
+        var profileLink = '{{ Route("profil.compte", $user) }}';
 
         // Affichage du menu de partage
         document.getElementById('shareButton').addEventListener('click', function(event) {

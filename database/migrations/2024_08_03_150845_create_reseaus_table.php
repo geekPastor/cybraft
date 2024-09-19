@@ -21,13 +21,13 @@ return new class extends Migration
     {
         Schema::create('reseaux', function (Blueprint $table) {
             $table->id();
-            $table->string("Facebook")->nullable();
-            $table->string("Instagram")->nullable();
-            $table->string("Linkedin")->nullable();
-            $table->string("Tik Tok")->nullable();
-            $table->string("Theads")->nullable();
-            $table->string("Telegram")->nullable();
-            $table->string("Whatsapp")->nullable();
+            $table->string("facebook")->nullable();
+            $table->string("instagram")->nullable();
+            $table->string("linkedin")->nullable();
+            $table->string("tiktok")->nullable();
+            $table->string("theads")->nullable();
+            $table->string("telegram")->nullable();
+            $table->string("whatsapp")->nullable();
             $table->foreignIdFor(Profil::class);
             $table->timestamps();
         });
