@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::table('profils', function (Blueprint $table) {
             $table->string("number")->nullable();
-            $table->string("prenom")->nullable();
-            $table->string("nom_entite")->nullable();
         });
     }
 
@@ -30,7 +28,6 @@ return new class extends Migration
     {
         Schema::table('profils', function (Blueprint $table) {
             $table->dropColumn("number");
-            $table->dropColumn("prenom");
         });
     }
 };

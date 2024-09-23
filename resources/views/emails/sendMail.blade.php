@@ -1,7 +1,9 @@
 <x-mail::message>
 # Introduction
 
-adresse par {{$data["email"]}}
+### Mail de : {{$data["email"]}}
+### Téléphone : {{$data["phone"]}}
+### Adresse : {{$data["adresse"]}}
 
 {{$data['notes']}}
 

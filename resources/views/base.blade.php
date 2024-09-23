@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'Admission</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    @vite('resources/css/app.css')
 </head>
 <body class="bg-yellow-500 flex items-center justify-center min-h-screen">
-        @yield("content")
+    @yield("content")
 </body>
 </html>

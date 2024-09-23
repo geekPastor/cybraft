@@ -18,10 +18,6 @@ class profil extends Model
         'naissance',
         'domicile', 
         'competences',
-        "prenom",
-        "nom_entite",
-        "services",
-        "description_entite",
     ];
     public function reseau()
     {

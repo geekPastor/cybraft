@@ -23,7 +23,6 @@ class updateRequest extends FormRequest
 {
     return [
         'name' => 'required|string|max:255',
-        'prenom' => 'required|string|max:255',
         'profession' => 'required|string|max:255',
         'sexe' => 'required|string|max:10',
         'number' => 'required|string|max:20',
@@ -32,14 +31,15 @@ class updateRequest extends FormRequest
         'domicile' => 'required|string|max:255',
         'description' => 'required|string',
         'competences' => 'required|string',
-        'nom_entite' => 'required|string|max:255',
-        'services' => 'required|string|max:255',
+
+
+        // Réseaux sociaux
+
         'facebook' => 'nullable|string|max:255',
         'twitter' => 'nullable|string|max:255',
         'instagram' => 'nullable|string|max:255',
         'linkedin' => 'nullable|string|max:255',
         'tiktok' => 'nullable|string|max:255',
-        'description_entite' => 'required|string|max:255',
         'theads' => 'nullable|string|max:255',
         'telegram' => 'nullable|string|max:255',
         'whatsapp' => 'nullable|string|max:255',

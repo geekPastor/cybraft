@@ -7,7 +7,7 @@ use App\Models\pictures;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
-class storageController extends Controller
+class StorageController extends Controller
 {
     private function uppload(UploadedFile $file){
         return $file->store('public','public');

@@ -1,20 +1,45 @@
-@extends("base")
-@section("content")
-<div class="bg-white p-8 rounded-lg shadow-lg max-w-xl w-full m-8">
-    <h1 class="text-2xl font-bold mb-6 text-center">connexion</h1>
-<form action={{Route('login')}} method="POST">
-    @csrf
-    <div>
-        <label for="nom_entite" class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" name="email" placeholder="saisissez votre email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    <div>
-        <label for="nom_entite" class="block text-sm font-medium text-gray-700">mot de passe</label>
-        <input type="password" name="password" placeholder="saisissez votre mot de passe"  required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    
-    <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">se connecter</button>
-    <a class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 inline-block text-center" href="https://wa.me/243829255398">contacter l'admin</a>
- </form>
-</div>
-@endsection
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Mot de passe')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ms-2 text-sm text-gray-600">{{ __('Se souvenir de moi') }}</span>
+            </label>
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="https://wa.me/243829255398">
+                {{ __("Contacter l'administrateur") }}
+            </a>
+
+            <x-primary-button class="ms-3">
+                {{ __('Se connecter') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>

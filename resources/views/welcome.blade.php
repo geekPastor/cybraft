@@ -6,7 +6,7 @@
     <title>{{$user->name}}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
     <style>
         @keyframes slide-in {
             from {
@@ -73,18 +73,20 @@
              
                 {!! $qrCode !!}
             </div>
-            <div class="flex justify-center flex-col mt-6 gap-6">
-                
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user)}}">
-                    <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
-                </a>
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
-                    <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
-                </a>
-                <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user)}}">
-                    <i class="fa-solid fa-share-from-square"></i> Modifier
-                </a>
-            </div>
+            @if (Auth::id() == $user->id) 
+                <div class="flex justify-center flex-col mt-6 gap-6">
+                    
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user)}}">
+                        <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
+                    </a>
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
+                        <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
+                    </a>
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user)}}">
+                        <i class="fa-solid fa-share-from-square"></i> Modifier
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -149,15 +151,22 @@
                         </a>
                     </li>
                     <li class="mb-4">
-                        <a href="index.html" class="flex items-center bg-white shadow-md rounded-md p-4">
+                        <div class="flex items-center bg-white shadow-md rounded-md p-4">
                             <div class="bg-blue-950 p-2 rounded-l-md text-white">
                                 <i class="fa-solid fa-building"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Société :</p>
-                                <p class="text-gray-600">{{$user->profil->nom_entite ?? " "}}</p>
+                                <p class="text-gray-600">
+                                    {{$user->entity?->name}}
+                                    @auth
+                                        @if (Auth::id() == $user->id) 
+                                            (<x-link href="{{ route('entities.create') }}">Editer</x-link>)
+                                        @endif
+                                    @endauth
+                                </p>
                             </div>
-                        </a>
+                        </div>
                     </li>
                     <li class="mb-4">
                         <div class="flex items-center bg-white shadow-md rounded-md p-4">
@@ -166,7 +175,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Adresse société :</p>
-                                <p class="text-gray-600">{{$user->profil->nom_entite ?? " "}}</p>
+                                <p class="text-gray-600">{{$user->entity?->address}}</p>
                             </div>
                         </div>
                     </li>
@@ -257,46 +266,46 @@
                 <p class="mb-4 text-center uppercase">{{$user->profil->nom_entite ?? ''}} <a href="./about.html" class="lowercase hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
             </div>
 
-            <div>
-                <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
-                    <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                        <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                            <i class="fa-regular fa-circle-check"></i>
+            @if ($user->entity->type == 1) 
+                <div>
+                    <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
+                    
+                    @if ($user->entity->services->count() > 0)
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
+                            @foreach ($user->entity->services as $service)
+                            <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
+                                <div class="bg-blue-950 p-2 rounded-l-md text-white">
+                                    <i class="fa-regular fa-circle-check"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-700 font-semibold">
+                                        {{$service->name}}
+                                    </p>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
-                        <div class="ml-4">
-                            <p class="text-gray-700 font-semibold">BRANDING</p>
-                        </div>
-                    </div>
-        
-                    <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                        <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                            <i class="fa-regular fa-circle-check"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-gray-700 font-semibold">ORGANISATION</p>
-                        </div>
-                    </div>
-        
-                    <div href="index.html" class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                        <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                            <i class="fa-regular fa-circle-check"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-gray-700 font-semibold">WEB</p>
-                        </div>
-                    </div>
-        
-                    <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                        <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                            <i class="fa-regular fa-circle-check"></i>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-gray-700 font-semibold">IMPRESSIONS</p>
-                        </div>
-                    </div>
+
+                        @auth
+                            @if (Auth::id() == $user->id) 
+                                <div class="flex justify-center mt-4">
+                                    <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                </div>
+                            @endif
+                        @endauth
+                    @else
+                        <p class="text-center text-gray-600">Aucun service disponible</p>
+    
+                        @auth
+                            @if (Auth::id() == $user->id) 
+                                <div class="flex justify-center mt-4">
+                                    <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                </div>
+                            @endif
+                        @endauth
+                    @endif        
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="mt-8 mb-4 text-center text-gray-600">
