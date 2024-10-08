@@ -83,7 +83,7 @@ class ProfilController extends Controller
 
     public function qr(User $user, Request $request)
     {
-        $url = route("profil.compte", $user);
+        $url = route("profil.compte", $user->getRouteKey());
         $qrCode = $this->generateQrForUser($url, 100);
         return view("qr", ['user' => $user, "qrCode" => $qrCode]);
     }

@@ -75,13 +75,13 @@
             @if (Auth::id() == $user->id) 
                 <div class="flex justify-center flex-col mt-6 gap-6">
                     
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user)}}">
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user->getRouteKey())}}">
                         <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
                     </a>
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
                         <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                     </a>
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user)}}">
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user->getRouteKey())}}">
                         <i class="fa-solid fa-share-from-square"></i> Modifier
                     </a>
                 </div>
@@ -262,7 +262,7 @@
     
         <div class="flex justify-center items-center flex-col mt-6 gap-4 w-full">
             @if ($user->profil) 
-                <form id="vcard" action="{{ route('vcard', $user) }}" method="post" class="inline-block">
+                <form id="vcard" action="{{ route('vcard', $user->getRouteKey()) }}" method="post" class="inline-block">
                     @csrf
                 </form>
                 <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
@@ -345,7 +345,7 @@
                 <button class="text-gray-500 hover:text-gray-700" onclick="togglePopup()">X</button>
             </div>
 
-            <form action={{Route("profil.mail",$user)}} method="POST">
+            <form action={{Route("profil.mail",$user->getRouteKey())}} method="POST">
                 @csrf
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nom Complet :</label>

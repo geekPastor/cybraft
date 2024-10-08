@@ -1,1 +1,1 @@
-<img class="w-24 mt-4" src="{{ asset('logo.png') }}" alt="Equity image">
+<img class="w-48 mt-4" src="{{ asset('LOGOS/Noir.png') }}" alt="Equity image">

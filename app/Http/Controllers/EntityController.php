@@ -48,7 +48,7 @@ class EntityController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]));
 
-        return to_route('profil.compte', Auth::id())->with('success', 'Service créé avec succès');
+        return to_route('profil.compte', Auth::user()->getRouteKey())->with('success', 'Service créé avec succès');
     }
 
     public function getTypes()

@@ -1,4 +1,4 @@
-<nav class="fixed top-0 z-50 w-full bg-yellow-600">
+<nav class="fixed top-0 z-50 w-full bg-gray-600">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
@@ -21,7 +21,7 @@
                             <img class="w-8 h-8 rounded-full" src="" alt="user photo">
                         </button>
                     </div>
-                    <div class="z-50 right-0 sm:right-4 top-12 absolute hidden my-4 text-base list-none bg-yellow-700 divide-y divide-gray-100 rounded shadow" id="dropdown-user-menu">
+                    <div class="z-50 right-0 sm:right-4 top-12 absolute hidden my-4 text-base list-none bg-gray-700 divide-y divide-gray-100 rounded shadow" id="dropdown-user-menu">
                         <div class="px-4 py-3" role="none">
                             <p class="text-md text-white" role="none">
                                 {{ Auth::user()->name }} ({{ Auth::user()->role->name }})
@@ -53,7 +53,7 @@
 </nav>
     
 <aside id="logo-sidebar" class="fixed top-10 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white sm:translate-x-0 " aria-label="Sidebar">
-    <div class="h-full px-3 py-6 overflow-y-auto bg-yellow-900">
+    <div class="h-full px-3 py-6 overflow-y-auto bg-gray-900">
         <ul class="space-y-2 mt-3 font-medium">
 
             <li>

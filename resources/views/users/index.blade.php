@@ -37,10 +37,10 @@
                             {{ $user->email }}
                         </td>
                         <td class="px-6 py-4 text-right flex">
-                            <x-primary-link href="{{ route('users.show', $user) }}">Voir</x-primary-li>
+                            <x-primary-link href="{{ route('users.show', $user->getRouteKey()) }}">Voir</x-primary-li>
                         
                             @if ($user->id !== Auth::id())
-                                <form action="{{ route('users.destroy', $user) }}" method="post" class="d-inline ml-1"
+                                <form action="{{ route('users.destroy', $user->getRouteKey()) }}" method="post" class="d-inline ml-1"
                                 onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"
                                 >
                                     @csrf

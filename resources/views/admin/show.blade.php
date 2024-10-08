@@ -30,7 +30,7 @@
             <!-- Section Création d'utilisateur -->
             <div id="section-create-user" class="dashboard-section">
                 <h2 class="text-3xl font-semibold text-blue-600 mb-4">Créer un utilisateur</h2>
-                <form action="{{Route('profil.create',$user) }}" method="POST">
+                <form action="{{Route('profil.create',$user->getRouteKey()) }}" method="POST">
                     @csrf
                     <div class="mb-6">
                         <label for="email" class="block text-sm font-medium text-gray-600">Email</label>

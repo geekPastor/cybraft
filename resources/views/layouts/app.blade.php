@@ -23,7 +23,7 @@
         <script defer src="{{ asset('custom.js') }}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-yellow-800 bg-opacity-15">
+    <body class="font-sans antialiased bg-gray-800 bg-opacity-15">
         
         @include('layouts.navigation')
         

@@ -18,7 +18,7 @@
             @csrf
             @method($method)
             <div>
-                <x-input-label for="name">Nom complet</x-input-label>
+                <x-input-label for="name">Nom de la société</x-input-label>
                 <x-text-input type="text" required name="name" id="name" value="{{ old('name', $entity?->name) }}" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -34,8 +34,8 @@
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
             </div>
             <div class="my-2">
-                <x-input-label for="website">Website</x-input-label>
-                <x-text-input type="text" name="website" id="website" required value="{{ old('website', $entity?->website) }}" />
+                <x-input-label for="website">Site web</x-input-label>
+                <x-text-input type="text" name="website" id="website" required value="{{ old('website', $entity?->website) }}" placeholder="ex : https://google.com"/>
                 <x-input-error :messages="$errors->get('website')" class="mt-2" />
             </div>
             <div class="mb-3">
