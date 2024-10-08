@@ -11,23 +11,14 @@
         <script>window._wca = window._wca || [];</script>
 
             <!-- This site is optimized with the Yoast SEO plugin v23.4 - https://yoast.com/wordpress/plugins/seo/ -->
-            <title>Cybcraft | Cartes de Visite NFC Sans Contact Connectées</title><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" /></noscript>
+            <title>Cybcraft | Cartes de Visite NFC Sans Contact Connectées</title>
+            <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&#038;display=swap" /></noscript>
             <meta name="description" content="La Carte de Visite NFC Wolf ID utilise le NFC et le QR code pour simplifier le networking et le partage de votre fiche de contact." />
             <link rel="canonical" href="https://wolf-id.com/" />
             <meta property="og:locale" content="fr_FR" />
             <meta property="og:type" content="website" />
-            <meta property="og:title" content="Wolf ID - La Carte de Visite NFC" />
-            <meta property="og:description" content="Différenciez-vous grâce à la WolfCard et donnez du sens à vos opportunités de Networking." />
-            <meta property="og:url" content="https://wolf-id.com/" />
-            <meta property="og:site_name" content="Wolf ID" />
-            <meta property="article:publisher" content="https://www.facebook.com/profile.php?id=100077779532047" />
-            <meta property="article:modified_time" content="2024-09-21T23:14:53+00:00" />
-            <meta property="og:image" content="https://wolf-id.com/wp-content/uploads/2022/12/65968.png" />
-            <meta property="og:image:width" content="2560" />
-            <meta property="og:image:height" content="2560" />
-            <meta property="og:image:type" content="image/png" />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="Cybcraft - La Carte de Visite Connectée" />
+            <meta property="og:title" content="Cybcraft - La Carte de Visite Connectée" />
+            <meta property="og:description" content="Élargir votre réseau n'a jamais été aussi facile et ce grâce a Cybcraft" />
             <!-- / Yoast SEO plugin. -->
         <style id='wp-emoji-styles-inline-css' type='text/css'>
 
@@ -1547,7 +1538,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid h-100">
-                <a class="navbar-brand d-lg-none" href="https://wolf-id.com">
+                <a class="navbar-brand d-lg-none" href="">
                 <img src="{{ asset('/LOGOS/Originale.png') }}" alt="logo.alt" class="black"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -1555,18 +1546,20 @@
                 </button>
                 <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                     <div class="navbar-nav">
-                        <a class="navbar-brand d-none d-lg-block" href="https://wolf-id.com">
+                        <a class="navbar-brand d-none d-lg-block" href="">
                                 <img src="{{ asset('/LOGOS/Originale.png') }}" alt="logo.alt" class="black"/>
                         </a>
                         <div class="wordpro-menu-fix">
                             <ul class="menu-header-menu-0 mr-auto main-nav" >
-                                <li class=" menu-item menu-item-type-custom menu-item-object-custom nav-item"><a class="nav-link" href="#" >Accuiel</a></li>
-                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#" >Bénéfices</a></li>
-                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#" >Commander</a></li>
+                                <li class=" menu-item menu-item-type-custom menu-item-object-custom nav-item"><a class="nav-link" href="#mouse-follower-over" >Accuiel</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#benefits" >Bénéfices</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#work" >Fonctionnement</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#pricings" >Nos Tarifs</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="https://wa.me/message/MXYG42F32WEZE1" >Commander</a></li>
                             </ul>
                             <ul class="menu-header-menu-1 mr-auto main-nav" >
-                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#" >A Propose</a></li>
-                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#" >Contact</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="#about" >A Propose</a></li>
+                                <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item"><a class="nav-link" href="https://wa.me/message/MXYG42F32WEZE1" >Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1602,7 +1595,7 @@
                     <div id="mouse-follower-container">
                         <div id="background-shape"></div>
                         <div id="mouse-follower">
-                            <img src="{{ asset('/LOGOS/Originale.png') }}" alt="carte nfc">
+                            <img src="{{ asset('/cybCard/metal.jpg') }}" alt="carte nfc">
                         </div>
                     </div>
                 </div>
@@ -1610,7 +1603,7 @@
         </div>
     </section>
 
-   <section class="summary dark">
+   <section class="summary dark" id="about">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -1622,7 +1615,7 @@
                     </h2>
                     <p>
                         <span class="translatepress-french">
-                            Marquez les esprits dès le premier contact ! <br> Nos cartes de visite NFC simplifient le partage de vos informations de contact.
+                            Marquez les esprits dès le premier contact ! <br> Les cartes de visite Cybcraft avec la technologie NFC rendent le partage de vos coordonnées plus simple et rapide.
                         </span>
                     </p>
                     <a class="btn btn-outline-primary" href="https://wa.me/message/MXYG42F32WEZE1" role="button">
@@ -1643,7 +1636,7 @@
 </section>
 
 
-        <section class="presentation shape">
+        <section class="presentation shape" id="work">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 order-md-2">
@@ -1722,7 +1715,8 @@
                 </div>
             </div>
         </section>
-                <section class="advantages_benefits dark">
+
+        <section class="advantages_benefits dark" id="benefits">
             <div class="container">
                 <div class="row">
 
@@ -1797,7 +1791,7 @@
             </div>
         </section>
 
-        <section class="cta text-center shape">
+        <section class="cta text-center shape" id="pricings">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -1814,36 +1808,22 @@
 									<ul class="products wordpro-columns-3 container">
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
                                             <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
+                                                <img src="{{ asset('/cybCard/standard.jpg') }}" data-lazy-src="{{ asset('/cybCard/standard.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
                                             </a>
                                         </li>
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
                                             <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
-                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
+                                                <img src="{{ asset('/cybCard/essential.jpg') }}" data-lazy-src="{{ asset('/cybCard/essential.jpg') }}">
+                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Essentiel</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
                                             </a>
                                         </li>
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
                                             <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
-                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
-                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
-                                            </a>
-                                        </li>
-                                        <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
-                                            <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
-                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
-                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
-                                            </a>
-                                        </li>
-                                        <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
-                                            <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
-                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
+                                                <img src="{{ asset('/cybCard/metal.jpg') }}" data-lazy-src="{{ asset('/cybCard/metal.jpg') }}">
+                                                <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Metal</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
                                             </a>
                                         </li>
@@ -1873,15 +1853,11 @@
                             <div class="introduce">
                             Réseautage simplifié.
                             </div>
-
-                            <div class="postal_address">
-                                52 Boulevard Perier -13008 Marseille
-                            </div>
                             <div class="phone">
-                                +33 6 13 44 52 58
+                                +243 847 099 942
                             </div>
                             <div class="email_address">
-                                contact@wolf-id.com
+                                contact@cybcraft.com
                             </div>
                         </div>
                     </div>
@@ -1906,19 +1882,10 @@
                     <h5>Contact</h5>
                     <ul class="menu-footer-menu-2 footer-nav" >
                         <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="" >facebook</a>
+                            <a class="nav-link" href="https://www.instagram.com/cybcraft?igsh=MXFwN2dpNTlxbDU2cg%3D%3D" >instagram</a>
                         </li>
                         <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="" >twitter</a>
-                        </li>
-                        <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="" >linkedin</a>
-                        </li>
-                        <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="" >instagram</a>
-                        </li>
-                        <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="" >youtube</a>
+                            <a class="nav-link" href="https://wa.me/message/MXYG42F32WEZE1" >WhatsApp</a>
                         </li>
                     </ul>
                 </div>
