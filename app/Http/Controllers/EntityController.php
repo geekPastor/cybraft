@@ -27,14 +27,14 @@ class EntityController extends Controller
     {
         Auth::user()->entity()->create($request->validated());
 
-        return to_route('profil.compte', Auth::id())->with('success', 'Entité créée avec succès');
+        return to_route('profil.compte', Auth::user()->getRouteKey())->with('success', 'Entité créée avec succès');
     }
 
     public function update(EntityRequest $request, Entity $entity)
     {
         Auth::user()->entity()->update($request->validated());
 
-        return to_route('profil.compte', Auth::id())->with('success', 'Entité mise à jour avec succès');
+        return to_route('profil.compte', Auth::user()->getRouteKey())->with('success', 'Entité mise à jour avec succès');
     }
 
     public function createService()

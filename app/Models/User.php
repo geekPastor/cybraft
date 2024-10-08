@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'slug',
     ];
 
     /**
@@ -74,5 +75,22 @@ class User extends Authenticatable
     public function entity(): HasOne
     {
         return $this->hasOne(Entity::class);
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        if (preg_match('/-(\d+)$/', $value, $matches)) {
+            $id = $matches[1];
+            // Extraire le slug en retirant l'id de la chaîne originale
+            $slug = substr($value, 0, strrpos($value, '-' . $id));
+            return $this->where('id', $id)->where('slug', $slug)->firstOrFail();
+        }
+
+        abort(404);
+    }
+
+    public function getRouteKey()
+    {
+        return $this->slug . '-' . $this->id;
     }
 }

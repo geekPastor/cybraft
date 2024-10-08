@@ -16,14 +16,14 @@ class LoginController extends Controller
         if(Auth::attempt($data)){
 
             $user = Auth::user();
-
+            
             if($user->role_id == Role::ADMIN){
                 $request->session()->regenerate();
                 return redirect()->route('dashboard');
             }
             elseif($user->role_id == Role::USER){
                 $request->session()->regenerate();
-                return redirect()->route("profil.compte",$user);
+                return redirect()->route("profil.compte", $user->getRouteKey());
             }
         }
         else{

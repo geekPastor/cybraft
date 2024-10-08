@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => 'admin@2024',
             'role_id' => Role::ADMIN,
+            'slug' => 'admin',
         ]);
 
         $this->call(RoleSeeder::class);
+        $this->call(EntityTypeSeeder::class);
     }
 }

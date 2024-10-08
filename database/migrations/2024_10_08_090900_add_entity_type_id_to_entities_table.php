@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::table('entities', function (Blueprint $table) {
             $table->foreignIdFor(EntityType::class);
-            $table->dropColumn('type');
         });
     }
 
@@ -25,7 +24,6 @@ return new class extends Migration
     {
         Schema::table('entities', function (Blueprint $table) {
             $table->dropForeignIdFor(EntityType::class);
-            $table->integer('type');
         });
     }
 };

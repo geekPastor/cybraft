@@ -78,7 +78,7 @@ class ProfilController extends Controller
             ['profil_id' => $profil->id],
             $profilData
         );
-        return to_route('profil.compte', Auth::id())->with("success", "modification reussie");
+        return to_route('profil.compte', Auth::user()->getRouteKey())->with("success", "modification reussie");
     }
 
     public function qr(User $user, Request $request)
