@@ -19,9 +19,10 @@ class reseau extends Model
         'theads',
         'telegram',
         'whatsapp',
+        'linkedin',
     ];
     public function profil()
     {
-        return $this->belongsTo(profil::class);
+        return $this->belongsTo(Profil::class);
     }
 }

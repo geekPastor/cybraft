@@ -198,28 +198,28 @@
                 <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
                     @if(!empty($user->profil->reseau->facebook))                  
                       <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->twitter)) 
+                    @endif
+                    @if(!empty($user->profil->reseau->twitter)) 
                       <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->theads))
+                    @endif
+                    @if(!empty($user->profil->reseau->theads))
                       <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->instagram))
+                    @endif
+                    @if(!empty($user->profil->reseau->instagram))
                       <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->linkedin))
+                    @endif
+                    @if(!empty($user->profil->reseau->linkedin))
                       <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->telegram))
+                    @endif
+                    @if(!empty($user->profil->reseau->telegram))
                       <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->whatsapp))
+                    @endif
+                    @if(!empty($user->profil->reseau->whatsapp))
                       <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
-                      @endif
-                      @if(!empty($user->profil->reseau->tiktok))
+                    @endif
+                    @if(!empty($user->profil->reseau->tiktok))
                       <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
-                      @endif
+                    @endif
                 </div>
             </div>
             <div class="w-full md:w-6/12">
@@ -235,39 +235,52 @@
             <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
                 @if(!empty($user->profil->reseau->facebook))                  
                   <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->twitter)) 
+                @endif
+                @if(!empty($user->profil->reseau->twitter)) 
                   <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->theads))
+                @endif
+                @if(!empty($user->profil->reseau->theads))
                   <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->instagram))
+                @endif
+                @if(!empty($user->profil->reseau->instagram))
                   <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->linkedin))
+                @endif
+                @if(!empty($user->profil->reseau->linkedin))
                   <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->telegram))
+                @endif
+                @if(!empty($user->profil->reseau->telegram))
                   <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->whatsapp))
+                @endif
+                @if(!empty($user->profil->reseau->whatsapp))
                   <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
-                  @endif
-                  @if(!empty($user->profil->reseau->tiktok))
+                @endif
+                @if(!empty($user->profil->reseau->tiktok))
                   <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
-                  @endif
+                @endif
             </div>
         </div>
     
         <div class="flex justify-center items-center flex-col mt-6 gap-4 w-full">
-            <a class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
-                <i class="fa-solid fa-download"></i>Enregistrer contact
-            </a>
+            @if ($user->profil) 
+                <form id="vcard" action="{{ route('vcard', $user) }}" method="post" class="inline-block">
+                    @csrf
+                </form>
+                <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
+                    <i class="fa-solid fa-download"></i>Enregistrer contact
+                </button>
+            @endif
 
-            <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
-                <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
-            </button>
+            @auth
+                @if ($user->id != Auth::id())
+                    <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
+                        <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
+                    </button>
+                @endif
+            @else
+                <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
+                    <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
+                </button>
+            @endauth
         </div>
         
         <div class="mt-12 flex justify-center flex-col-reverse">
@@ -391,16 +404,16 @@
             const popupForm = document.getElementById('popupForm');
             popupForm.classList.toggle('hidden');
         }
-document.getElementById('closeModal').addEventListener('click', function() {
-    const modal = document.getElementById('modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex'); // Retirer la classe flex pour éviter tout conflit
-});
-document.getElementById('editBtn').addEventListener('click', function() {
-    const modal = document.getElementById('modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');  // Ajout de la classe flex pour centrer les éléments
-});
+        document.getElementById('closeModal').addEventListener('click', function() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex'); // Retirer la classe flex pour éviter tout conflit
+        });
+        document.getElementById('editBtn').addEventListener('click', function() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');  // Ajout de la classe flex pour centrer les éléments
+        });
     </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VCardController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -29,6 +30,9 @@ Route::prefix("/profil/{user}")->controller(ProfilController::class)->name("prof
     Route::post("/mail","mail")->middleware("auth")->name("mail");
     Route::post("/destroy","supprimeDestrroy")->name("supprimeDestrroy");
 });
+
+Route::post('/vcard/{user}', VCardController::class)->name('vcard');
+
 //compte administrateur
 Route::middleware("auth")->group(function(){
     Route::resource("users", UserController::class);
