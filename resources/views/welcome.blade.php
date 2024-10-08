@@ -155,7 +155,13 @@
                                 <i class="fa-solid fa-building"></i>
                             </div>
                             <div class="ml-4">
-                                <p class="text-gray-700 font-semibold">Société :</p>
+                                <p class="text-gray-700 font-semibold">
+                                    @if ($user->entity)
+                                        Nom {{ $user->entity->type->name }} :
+                                    @else
+                                        Société :
+                                    @endif
+                                </p>
                                 <p class="text-gray-600">
                                     {{$user->entity?->name}}
                                     @auth
@@ -173,7 +179,12 @@
                                 <i class="fa-regular fa-map"></i>
                             </div>
                             <div class="ml-4">
-                                <p class="text-gray-700 font-semibold">Adresse société :</p>
+                                <p class="text-gray-700 font-semibold">
+                                @if ($user->entity) 
+                                    Adresse {{ $user->entity->type->name }} :
+                                @else 
+                                    Adresse entité :
+                                @endif</p>
                                 <p class="text-gray-600">{{$user->entity?->address}}</p>
                             </div>
                         </div>
@@ -265,45 +276,47 @@
                 <p class="mb-4 text-center uppercase">{{$user->profil->nom_entite ?? ''}} <a href="./about.html" class="lowercase hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
             </div>
 
-            @if ($user->entity->type == 1) 
-                <div>
-                    <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
-                    
-                    @if ($user->entity->services->count() > 0)
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
-                            @foreach ($user->entity->services as $service)
-                            <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                                <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                                    <i class="fa-regular fa-circle-check"></i>
+            @if ($user->entity) 
+                @if ($user->entity->type->id == 1 or $user->entity->type->id == 2) 
+                    <div>
+                        <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
+                        
+                        @if ($user->entity->services->count() > 0)
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
+                                @foreach ($user->entity->services as $service)
+                                <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
+                                    <div class="bg-blue-950 p-2 rounded-l-md text-white">
+                                        <i class="fa-regular fa-circle-check"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-gray-700 font-semibold">
+                                            {{$service->name}}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="ml-4">
-                                    <p class="text-gray-700 font-semibold">
-                                        {{$service->name}}
-                                    </p>
-                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
-
-                        @auth
-                            @if (Auth::id() == $user->id) 
-                                <div class="flex justify-center mt-4">
-                                    <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
-                                </div>
-                            @endif
-                        @endauth
-                    @else
-                        <p class="text-center text-gray-600">Aucun service disponible</p>
     
-                        @auth
-                            @if (Auth::id() == $user->id) 
-                                <div class="flex justify-center mt-4">
-                                    <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
-                                </div>
-                            @endif
-                        @endauth
-                    @endif        
-                </div>
+                            @auth
+                                @if (Auth::id() == $user->id) 
+                                    <div class="flex justify-center mt-4">
+                                        <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                    </div>
+                                @endif
+                            @endauth
+                        @else
+                            <p class="text-center text-gray-600">Aucun service disponible</p>
+        
+                            @auth
+                                @if (Auth::id() == $user->id) 
+                                    <div class="flex justify-center mt-4">
+                                        <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                    </div>
+                                @endif
+                            @endauth
+                        @endif        
+                    </div>
+                @endif
             @endif
         </div>
 

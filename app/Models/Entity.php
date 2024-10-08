@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entity extends Model
@@ -13,7 +14,7 @@ class Entity extends Model
     protected $fillable = [
         'user_id',
         'address',
-        'type',
+        'entity_type_id',
         'name',
         'description',
         'website',
@@ -27,5 +28,15 @@ class Entity extends Model
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);
+    }
+
+    /**
+     * Get the type that owns the Entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(EntityType::class, 'entity_type_id');
     }
 }

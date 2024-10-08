@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EntityRequest;
 use App\Models\Entity;
+use App\Models\EntityType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,7 @@ class EntityController extends Controller
     {
         $data = [];
         $entity = Auth::user()->entity;
+        $data['types'] = $this->getTypes();
 
         if ($entity) {
             $data['entity'] = $entity;
@@ -47,5 +49,10 @@ class EntityController extends Controller
         ]));
 
         return to_route('profil.compte', Auth::id())->with('success', 'Service créé avec succès');
+    }
+
+    public function getTypes()
+    {
+        return EntityType::all();
     }
 }

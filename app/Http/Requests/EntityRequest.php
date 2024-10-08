@@ -22,7 +22,7 @@ class EntityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['required', 'integer', 'min:1', 'max:2'],
+            'entity_type_id' => ['required', 'exists:entity_types,id'],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'address' => ['required', 'string', 'max:255'],

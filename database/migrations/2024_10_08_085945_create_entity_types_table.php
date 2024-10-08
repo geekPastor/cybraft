@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entities', function (Blueprint $table) {
+        Schema::create('entity_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class);
             $table->string("name");
-            $table->string("address");
-            $table->longText("description");
-            $table->string("website");
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entities');
+        Schema::dropIfExists('entity_types');
     }
 };
