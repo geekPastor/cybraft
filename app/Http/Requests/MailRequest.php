@@ -27,7 +27,8 @@ class MailRequest extends FormRequest
             "phone"=>["required"],
             "adresse"=>["required"],
             "notes"=>["required"],
-            "toMail"=>['required']
+            "toMail"=>['required'],
+            "user_id"=>['required', 'exists:users,id'],
         ];
     }
 }

@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\updateRequest;
 use App\Mail\sendMail;
+use App\Models\Contact;
 use App\Models\pictures;
 use App\Models\Profil;
 use App\Models\reseau;
@@ -97,6 +98,7 @@ class ProfilController extends Controller
     public function mail(MailRequest $request)
     {
         Mail::send(new sendMail($request->validated()));
-        return back()->with("success", "votre email a bien ete envoye");
+        Contact::create($request->validated());
+        return back()->with("success", "Votre contact a bien été envoyé");
     }
 }

@@ -365,6 +365,7 @@
 
             <form action={{Route("profil.mail",$user->getRouteKey())}} method="POST">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}" required>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Nom Complet :</label>
                     <input type="text" id="name" class="w-full border border-gray-300 rounded-md p-2" name="name" placeholder="Nom complet">
