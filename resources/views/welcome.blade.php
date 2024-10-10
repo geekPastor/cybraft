@@ -73,7 +73,7 @@
                 {!! $qrCode !!}
             </div>
             @if (Auth::id() == $user->id) 
-                <div class="flex justify-center flex-col mt-6 gap-6">
+                <div class="flex justify-center flex-col mt-6 gap-2">
                     
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user->getRouteKey())}}">
                         <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
@@ -82,8 +82,17 @@
                         <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                     </a>
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user->getRouteKey())}}">
-                        <i class="fa-solid fa-share-from-square"></i> Modifier
+                        <i class="fa-solid fa-share-from-square"></i> Modifier mes informations
                     </a>
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('password.edit') }}">
+                        <i class="fa-solid fa-share-from-square"></i> Modifier le mot de passe
+                    </a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="px-6 py-2 w-full text-start hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300">
+                            <i class="fa-solid fa-share-from-square"></i> Se déconnecter
+                        </button>
+                    </form>
                 </div>
             @endif
         </div>
@@ -192,9 +201,48 @@
                 </ul>
             </div>
 
-            <div class="pb-2 block md:hidden">
+            @hasSocial($user)
+                <div class="pb-2 block md:hidden">
+                    <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
+                    <!-- Ajoutez les icônes des réseaux sociaux ici -->
+                    <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
+                        @if(!empty($user->profil->reseau->facebook))                  
+                        <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->twitter)) 
+                        <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->theads))
+                        <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->instagram))
+                        <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->linkedin))
+                        <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->telegram))
+                        <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->whatsapp))
+                        <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
+                        @endif
+                        @if(!empty($user->profil->reseau->tiktok))
+                        <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
+                        @endif
+                    </div>
+                </div>
+            @endhasSocial
+            <div class="w-full md:w-6/12">
+                <h2 class="text-2xl font-bold mb-2 text-blue-950">En savoir Plus sur Moi</h2>
+                <p class="mb-4">{{$user->profil->bio ?? " "}}</p>
+            </div>
+        </div>
+      
+        
+        @hasSocial($user) 
+            <div class="pb-2  hidden md:block">
                 <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
-                <!-- Ajoutez les icônes des réseaux sociaux ici -->
                 <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
                     @if(!empty($user->profil->reseau->facebook))                  
                       <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
@@ -222,116 +270,86 @@
                     @endif
                 </div>
             </div>
-            <div class="w-full md:w-6/12">
-                <h2 class="text-2xl font-bold mb-2 text-blue-950">En savoir Plus sur Moi</h2>
-                <p class="mb-4">{{$user->profil->bio ?? " "}}</p>
-            </div>
-        </div>
-      
-        
-        <div class="pb-2  hidden md:block">
-            
-            <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
-            <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
-                @if(!empty($user->profil->reseau->facebook))                  
-                  <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->twitter)) 
-                  <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->theads))
-                  <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->instagram))
-                  <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->linkedin))
-                  <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->telegram))
-                  <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->whatsapp))
-                  <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
-                @endif
-                @if(!empty($user->profil->reseau->tiktok))
-                  <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
-                @endif
-            </div>
-        </div>
+        @endhasSocial
     
         <div class="flex justify-center items-center flex-col mt-6 gap-4 w-full">
             @if ($user->profil) 
                 <form id="vcard" action="{{ route('vcard', $user->getRouteKey()) }}" method="post" class="inline-block">
                     @csrf
                 </form>
+            @endif
+
+            @if ($user->id != Auth::id())
                 <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
                     <i class="fa-solid fa-download"></i>Enregistrer contact
                 </button>
-            @endif
-
-            @auth
-                @if ($user->id != Auth::id())
-                    <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
-                        <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
-                    </button>
-                @endif
-            @else
                 <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
                     <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
                 </button>
-            @endauth
-        </div>
-        
-        <div class="mt-12 flex justify-center flex-col-reverse">
-            <div class="bg-white rounded-lg p-6 md:order-2 w-full">
-                <h2 class="text-2xl font-bold mb-4 text-blue-950 text-center">Information sur l'entité</h2>
-                <p class="mb-4 text-center uppercase">{{$user->profil->nom_entite ?? ''}} <a href="./about.html" class="lowercase hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
-            </div>
-
-            @if ($user->entity) 
-                @if ($user->entity->type->id == 1 or $user->entity->type->id == 2) 
-                    <div>
-                        <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
-                        
-                        @if ($user->entity->services->count() > 0)
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
-                                @foreach ($user->entity->services as $service)
-                                <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
-                                    <div class="bg-blue-950 p-2 rounded-l-md text-white">
-                                        <i class="fa-regular fa-circle-check"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <p class="text-gray-700 font-semibold">
-                                            {{$service->name}}
-                                        </p>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-    
-                            @auth
-                                @if (Auth::id() == $user->id) 
-                                    <div class="flex justify-center mt-4">
-                                        <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
-                                    </div>
-                                @endif
-                            @endauth
-                        @else
-                            <p class="text-center text-gray-600">Aucun service disponible</p>
-        
-                            @auth
-                                @if (Auth::id() == $user->id) 
-                                    <div class="flex justify-center mt-4">
-                                        <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
-                                    </div>
-                                @endif
-                            @endauth
-                        @endif        
-                    </div>
-                @endif
             @endif
         </div>
+        
+        @if ($user->entity) 
+            <div class="mt-12 flex justify-center flex-col-reverse">
+                <div class="bg-white rounded-lg p-6 md:order-2 w-full">
+                    <h2 class="text-2xl font-bold mb-4 text-blue-950 text-center">Information sur l'entité</h2>
+                    <p class="mb-4 text-center uppercase">{{$user->profil->nom_entite ?? ''}} <a href="{{ $user->entity->website }}" class="lowercase hover:bg-blue-950 hover:text-white text-blue-950  py-1 px-2 rounded-md border-2 border-blue-950 duration-300">En savoir plus</a></p>
+                </div>
+    
+                @if ($user->entity) 
+                    @if ($user->entity->type->id == 1 or $user->entity->type->id == 2) 
+                        <div>
+                            <h2 class="text-center text-2xl font-bold text-blue-950 mb-4">Services</h2>
+                            
+                            @if ($user->entity->services->count() > 0)
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
+                                    @foreach ($user->entity->services as $service)
+                                        <div class="flex items-center bg-white shadow-md rounded-md p-4 hover:cursor-pointer">
+                                            <div class="bg-blue-950 p-2 rounded-l-md text-white">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-gray-700 font-semibold flex">
+                                                    {{$service->name}}
+                                                    @if (Auth::id() == $user->id) 
+                                                        <span class="flex">
+                                                            <form action="{{ route('services.destroy', $service) }}" method="post" class="inline" id="deleteService_{{ $loop->iteration }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                            <x-link href="{{ route('services.edit', $service) }}">Editer</x-link>
+                                                            <button type="submit" class="text-red-500 font-bold hover:underline inline-block" form="deleteService_{{ $loop->iteration }}">Supprimer</button>
+                                                        </span>
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+        
+                                @auth
+                                    @if (Auth::id() == $user->id) 
+                                        <div class="flex justify-center mt-4">
+                                            <a href="{{ route('services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                        </div>
+                                    @endif
+                                @endauth
+                            @else
+                                <p class="text-center text-gray-600">Aucun service disponible</p>
+            
+                                @auth
+                                    @if (Auth::id() == $user->id) 
+                                        <div class="flex justify-center mt-4">
+                                            <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                        </div>
+                                    @endif
+                                @endauth
+                            @endif        
+                        </div>
+                    @endif
+                @endif
+            </div>
+        @endif
 
         <div class="mt-8 mb-4 text-center text-gray-600">
             CybCard

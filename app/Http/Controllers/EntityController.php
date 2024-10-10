@@ -37,20 +37,6 @@ class EntityController extends Controller
         return to_route('profil.compte', Auth::user()->getRouteKey())->with('success', 'Entité mise à jour avec succès');
     }
 
-    public function createService()
-    {
-        return view('entities.services.create');
-    }
-
-    public function storeService(Request $request)
-    {
-        Auth::user()->entity->services()->create($request->validate([
-            'name' => ['required', 'string', 'max:255'],
-        ]));
-
-        return to_route('profil.compte', Auth::user()->getRouteKey())->with('success', 'Service créé avec succès');
-    }
-
     public function getTypes()
     {
         return EntityType::all();

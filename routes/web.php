@@ -5,7 +5,9 @@ use App\Http\Controllers\EntityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VCardController;
@@ -14,10 +16,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('home');
 });
-Route::post("/register",[RegisterController::class,"index"])->name("register");
-Route::get("/register",[RegisterController::class,"show"])->name("showRegister");
-Route::post("/login",[LoginController::class,"index"])->name("login");
-Route::get("/login",[LoginController::class,"login"])->name("login");
+// Route::post("/register",[RegisterController::class,"index"])->name("register");
+// Route::get("/register",[RegisterController::class,"show"])->name("showRegister");
+Route::middleware('guest')->group(function(){
+    Route::post("/login",[LoginController::class,"index"])->name("login");
+    Route::get("/login",[LoginController::class,"login"])->name("login");
+});
 
 Route::post("/picture/{user}",[StorageController::class,"index"])->middleware("auth")->name("uppload");
 Route::post("/background/{user}",[StorageController::class,"background"])->middleware("auth")->name("background");
@@ -37,8 +41,13 @@ Route::post('/vcard/{user}', VCardController::class)->name('vcard');
 Route::middleware("auth")->group(function(){
     Route::resource("users", UserController::class);
     Route::resource("entities", EntityController::class);
-    Route::get('/entities/services/create', [EntityController::class, 'createService'])->name('entities.services.create');
-    Route::post('/entities/services', [EntityController::class, 'storeService'])->name('entities.services.store');
+
+    Route::resource('services', ServiceController::class)->except(['index', 'show']);
+
+    Route::controller(PasswordController::class)->name('password.')->prefix('password')->group(function(){
+        Route::get('/', 'edit')->name('edit');
+        Route::put('/', 'update')->name('update');
+    });
 
     Route::get("dashboard", [DashboardController::class,"index"])->name("dashboard");
 

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        abort_if(Auth::user()->role_id != Role::ADMIN, 404);
+    }
     /**
      * Display a listing of the resource.
      */

@@ -33,7 +33,7 @@ class ProfilController extends Controller
 
     public function update(User $user)
     {
-        $id = (int) $user->id;
+        abort_if($user->id != Auth::id(), 404);
         return view("update", ['user' => $user]);
     }
 
