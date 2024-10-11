@@ -5,9 +5,11 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -92,5 +94,20 @@ class User extends Authenticatable
     public function getRouteKey()
     {
         return $this->slug . '-' . $this->id;
+    }
+
+    public function getImageUrl()
+    {
+        return $this->picture?->picture ? asset(Storage::disk('public')->url($this->picture?->picture)) : asset('avatar.png');
+    }
+
+    /**
+     * Get all of the contacts for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class);
     }
 }

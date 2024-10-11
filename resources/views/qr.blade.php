@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Page</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-gray-100">
-    <div class="flex items-center justify-center min-h-screen">
+<x-app-layout title="Mon QR Code">
+    <div class="flex items-center justify-center">
         <div class="w-full h-4/5 max-w-md">
             <div class="bg-white p-8 rounded shadow-md text-center">
                 <h1 class="text-3xl font-bold mb-6">Cyb<span class="text-black">Craft</span></h1>
                 <div class="flex  justify-center mb-2">
-                   {!! $qrCode !!}
+                    {!! $qrCode !!}
                 </div>
                 <div class="space-y-4">
                     <form action={{Route("profil.supprimeDestrroy",$user->getRouteKey())}} method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
@@ -32,24 +24,17 @@
         </div>
     </div>
     
-    <footer class="bg-blue-950 py-8 mt-16">
-        <div class="container mx-auto text-center">
-            <img src="{{ asset('logo.png') }}" alt="Logo" class="mx-auto mb-4" style="max-width: 150px;">
-            <p class="text-gray-400">&copy; 2024 Cybcraft. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
         // Récupérer le lien généré par Laravel
         var profileLink = '{{ Route("profil.compte", $user->getRouteKey()) }}';
-
+    
         // Affichage du menu de partage
         document.getElementById('shareButton').addEventListener('click', function(event) {
             event.preventDefault();
             var menu = document.getElementById('shareMenu');
             menu.classList.toggle('hidden');
         });
-
+    
         // Copier le lien dans le presse-papiers
         document.getElementById('copyLinkButton').addEventListener('click', function() {
             navigator.clipboard.writeText(profileLink).then(function() {
@@ -58,7 +43,7 @@
                 console.error('Erreur lors de la copie : ', err);
             });
         });
-
+    
         // Fermer le menu si on clique à l'extérieur
         window.addEventListener('click', function(e) {
             var menu = document.getElementById('shareMenu');
@@ -67,5 +52,4 @@
             }
         });
     </script>
-</body>
-</html>
+</x-app-layout>

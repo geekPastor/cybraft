@@ -1,7 +1,6 @@
-@extends('base')
-@section ('content') 
-    <x-form-card class="w-2/4">
-       <form action="{{ route('services.update', $service) }}" method="post">
+<x-app-layout title="Modifer le service">
+    <x-form-card>
+        <form action="{{ route('services.update', $service) }}" method="post">
             @csrf
             @method('put')
             <h1 class="font-bold mb-3">Modifier ce service</h1>
@@ -13,4 +12,4 @@
             <x-primary-button>Enregistrer</x-primary-button>
         </form>
     </x-form-card>
-@endsection
+</x-app-layout>

@@ -1,11 +1,9 @@
-@extends('base')
-
-@section('content')
-    <x-form-card class="w-2/4">
+<x-app-layout title="Modification du mot de passe">
+    <x-form-card>
         <form action="{{ route('password.update') }}" method="POST">
             @csrf
             @method('put')
-            <h1 class="text-center text-lg font-bold mb-3">Modifier votre mot de passe</h1>
+            <h1 class="text-lg font-bold mb-3">Modifier votre mot de passe</h1>
             <div>
                 <x-input-label for="password" :value="__('Mot de passe actuel')" />
                 <x-text-input id="password" class="block mt-1 w-full"
@@ -24,6 +22,6 @@
             </div>
             <x-primary-button>Enregistrer</x-primary-button>
         </form>
-
+    
     </x-form-card>
-@endsection
+</x-app-layout>

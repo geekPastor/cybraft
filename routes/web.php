@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntityController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,8 @@ Route::middleware("auth")->group(function(){
         Route::get('/', 'edit')->name('edit');
         Route::put('/', 'update')->name('update');
     });
+
+    Route::resource('contacts', ContactController::class)->only(['index']);
 
     Route::get("dashboard", [DashboardController::class,"index"])->name("dashboard");
 

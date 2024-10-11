@@ -75,7 +75,7 @@
             @if (Auth::id() == $user->id) 
                 <div class="flex justify-center flex-col mt-6 gap-2">
                     
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.qr',$user->getRouteKey())}}">
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{ route('dashboard') }}">
                         <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
                     </a>
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
@@ -104,7 +104,7 @@
                 @if(!isset($user->picture->picture))
                 <img src="/black.jpeg" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
                 @else
-                <img src="/storage/{{$user->picture->picture}}" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                <img src="{{ $user->getImageUrl() }}" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
                 @endif
             </div>
             <h1 class="text-2xl font-semibold mt-4">{{$user->name}}</h1>
@@ -205,7 +205,7 @@
                 <div class="pb-2 block md:hidden">
                     <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
                     <!-- Ajoutez les icônes des réseaux sociaux ici -->
-                    <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
+                    <div class="flex justify-center items-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
                         @if(!empty($user->profil->reseau->facebook))                  
                         <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
                         @endif
@@ -213,7 +213,9 @@
                         <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
                         @endif
                         @if(!empty($user->profil->reseau->theads))
-                        <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                        <a href={{$user->profil->reseau->theads}} class="text-3xl">
+                            <img class="h-8" src="{{ asset('threads.png') }}" />
+                        </a>
                         @endif
                         @if(!empty($user->profil->reseau->instagram))
                         <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
@@ -243,7 +245,7 @@
         @hasSocial($user) 
             <div class="pb-2  hidden md:block">
                 <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
-                <div class="flex justify-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
+                <div class="flex justify-center items-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
                     @if(!empty($user->profil->reseau->facebook))                  
                       <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
                     @endif
@@ -251,7 +253,9 @@
                       <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
                     @endif
                     @if(!empty($user->profil->reseau->theads))
-                      <a href={{$user->profil->reseau->theads}} class="text-3xl"><i class="fa-brands fa-threads text-4xl text-black"></i></a>
+                    <a href={{$user->profil->reseau->theads}} class="text-3xl">
+                        <img class="h-8" src="{{ asset('threads.png') }}" />
+                    </a>
                     @endif
                     @if(!empty($user->profil->reseau->instagram))
                       <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>

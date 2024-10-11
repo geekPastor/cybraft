@@ -18,7 +18,7 @@
                     <div>
                         <button type="button" id="dropdown-user-open-menu" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user-menu">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="" alt="user photo">
+                            <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->getImageUrl() }}" alt="user photo">
                         </button>
                     </div>
                     <div class="z-50 right-0 sm:right-4 top-12 absolute hidden my-4 text-base list-none bg-gray-700 divide-y divide-gray-100 rounded shadow" id="dropdown-user-menu">
@@ -31,6 +31,17 @@
                             </p>
                         </div>
                         <ul class="py-1" role="none">
+                            @user
+                                <li>
+                                    <a href="{{ route('profil.compte', Auth::user()->getRouteKey()) }}" class="block px-4 py-2 text-md text-white hover:bg-blue-700" role="menuitem">Voir mon profil</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('profil.update', Auth::user()->getRouteKey()) }}" class="block px-4 py-2 text-md text-white hover:bg-blue-700" role="menuitem">Modifier mon profil</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('password.edit', Auth::user()->getRouteKey()) }}" class="block px-4 py-2 text-md text-white hover:bg-blue-700" role="menuitem">Modifier mon mot de passe</a>
+                                </li>
+                            @enduser
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -61,6 +72,23 @@
                     <x-nav-link href="{{ route('users.index') }}" text="Utilisateurs" @class(['bg-blue-700' => Route::currentRouteName() == "users.index" or Route::currentRouteName() == "users.show"])>
                         <i class="fa fa-line-chart" aria-hidden="true"></i>
                     </x-nav-link>
+                @else
+                    <x-nav-link href="{{ route('profil.compte', Auth::user()->getRouteKey()) }}" text="Accéder à mon profil">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('entities.create') }}" text="Mon entité">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('profil.qr', Auth::user()->getRouteKey()) }}" text="Voir mon QR Code">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('contacts.index') }}" text="Contacts" @class(['bg-blue-700' => Route::currentRouteName() == "contacts.index" or Route::currentRouteName() == "contacts.show"])>
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    </x-nav-link>
+
                 @endadmin
             </li>
 

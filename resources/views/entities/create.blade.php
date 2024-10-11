@@ -1,19 +1,20 @@
-@extends('base')
-
-@section ('content') 
-    @isset($entity)
-        @php
-            $route = route('entities.update', $entity);
-            $method = 'PUT';
-        @endphp
-    @else
-        @php
-            $route = route('entities.store');
-            $method = 'POST';
-            $entity = null;
-        @endphp
-    @endisset
-    <x-form-card class="w-1/3">
+@isset($entity)
+    @php
+        $route = route('entities.update', $entity);
+        $method = 'PUT';
+        $title = "Modifier les informations de {$entity->name}";
+    @endphp
+@else
+    @php
+        $route = route('entities.store');
+        $method = 'POST';
+        $entity = null;
+        $title = "Enregistrer la société";
+    @endphp
+@endisset
+    <x-app-layout :title="$title">
+    
+    <x-form-card>
         <form action="{{ $route }}" method="POST">
             @csrf
             @method($method)
@@ -52,4 +53,4 @@
             </div>
         </form>
     </x-form-card>
-@endsection
+</x-app-layout>
