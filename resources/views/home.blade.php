@@ -1627,8 +1627,8 @@
 
             <div class="mt-5 mt-md-0 col-md-6 text-center center-block">
             <!-- oEmbed Video -->
-                <div class="embed-container">
-                    <img src="{{ asset('/nfc3.jpeg') }}" data-lazy-src="{{ asset('/nfc3.jpeg') }}">
+                <div class="embed-contasiner">
+                    <img src="{{ asset('assets/images/card.png') }}" data-lazy-src="{{ asset('assets/images/card.png') }}">
                 </div> 
             </div>
         </div>
@@ -1711,7 +1711,8 @@
                         </article>
                     </div>
                     <div class="mt-5 mt-md-0 col-md-6 order-md-1  text-center center-block">
-                        <img width="2560" height="2560" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202560%202560'%3E%3C/svg%3E" class="img-fluid" alt="" title="business card and phone" decoding="async" fetchpriority="high" data-lazy-srcset="https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2560&amp;ssl=1 2560w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=300%2C300&amp;ssl=1 300w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=1024%2C1024&amp;ssl=1 1024w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=150%2C150&amp;ssl=1 150w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2000&amp;ssl=1 2000w" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://wolf-id.com/wp-content/uploads/2022/12/65968.png" /><noscript><img width="2560" height="2560" src="https://wolf-id.com/wp-content/uploads/2022/12/65968.png" class="img-fluid" alt="" title="business card and phone" decoding="async" fetchpriority="high" srcset="https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2560&amp;ssl=1 2560w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=300%2C300&amp;ssl=1 300w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=1024%2C1024&amp;ssl=1 1024w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=150%2C150&amp;ssl=1 150w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2000&amp;ssl=1 2000w" sizes="(max-width: 2560px) 100vw, 2560px" /></noscript>                    </div>
+                        <img width="2560" height="2560" src="{{ asset('assets/images/app_screen.png') }}" class="img-fluid" alt="" title="business card and phone" decoding="async" fetchpriority="high" data-lazy-srcset="https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2560&amp;ssl=1 2560w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=300%2C300&amp;ssl=1 300w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=1024%2C1024&amp;ssl=1 1024w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?resize=150%2C150&amp;ssl=1 150w, https://i0.wp.com/wolf-id.com/wp-content/uploads/2022/12/65968.png?w=2000&amp;ssl=1 2000w" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px"  />                  
+                    </div>
                 </div>
             </div>
         </section>

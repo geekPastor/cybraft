@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Auth::user()->contacts;
+        $contacts = Auth::user()->contacts()->orderBy('created_at', 'desc')->get();
 
         return view('contacts.index', compact('contacts'));
     }

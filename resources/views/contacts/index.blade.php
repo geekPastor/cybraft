@@ -22,6 +22,9 @@
                     <h2>
                         <span class="font-bold">Adresse : </span>{{ $contact->adresse }}
                     </h2>
+                    <h2>
+                        <span class="font-bold">Date : </span>{{ $contact->created_at->format('d/m/Y à H:i:s') }}
+                    </h2>
                     <p>
                         <span class="font-bold">Message : </span>
                         {{ $contact->notes }}
