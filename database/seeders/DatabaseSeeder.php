@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'chrinovic.mm@gmail.com',
-            'password' => 'admin@2024',
+            'email' => 'admin@mycybcraft.com',
+            'password' => 'cybcraftAdmin-2024',
             'role_id' => Role::ADMIN,
             'slug' => 'admin',
         ]);
