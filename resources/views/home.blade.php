@@ -1808,21 +1808,21 @@
 
 									<ul class="products wordpro-columns-3 container">
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
-                                            <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <a href="https://wa.me/message/MXYG42F32WEZE1" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                                                 <img src="{{ asset('/cybCard/standard.jpg') }}" data-lazy-src="{{ asset('/cybCard/3.Standard Recto.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
                                             </a>
                                         </li>
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
-                                            <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <a href="https://wa.me/message/MXYG42F32WEZE1" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                                                 <img src="{{ asset('/cybCard/essential.jpg') }}" data-lazy-src="{{ asset('/cybCard/2. Essentiel Verso.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Essentiel</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>44,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
                                             </a>
                                         </li>
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
-                                            <a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <a href="https://wa.me/message/MXYG42F32WEZE1" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                                                 <img src="{{ asset('/cybCard/metal.jpg') }}" data-lazy-src="{{ asset('/cybCard/1.Metal verso.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Metal</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>69,99 <span class="woocommerce-Price-currencySymbol">&euro;</span></bdi></span></span>
@@ -1868,10 +1868,10 @@
                     <h5>CybCraft</h5>
                     <ul class="menu-footer-menu-1 footer-nav" >
                         <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="https://wolf-id.com/boutique/" >A Propos</a>
+                            <a class="nav-link" href="#about" >A Propos</a>
                         </li>
                         <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
-                            <a class="nav-link" href="https://wolf-id.com/fonctionnement/" >Accueill</a>
+                            <a class="nav-link" href="#mouse-follower-over" >Accueill</a>
                         </li>
                         <li class=" menu-item menu-item-type-post_type menu-item-object-page nav-item">
                             <a class="nav-link" href="https://wa.me/message/MXYG42F32WEZE1" >Commander</a>
