@@ -113,13 +113,25 @@
 
     <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="text-center py-8">
-            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto overflow-hidden" id="editBtn">
-                @if(!isset($user->picture->picture))
-                <img src="/black.jpeg" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+            @auth
+                @if (Auth::id() == $user->id)
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto overflow-hidden" id="editBtn">
+                        @if(!isset($user->picture->picture))
+                        <img src="/black.jpeg" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                        @else
+                        <img src="{{ $user->getImageUrl() }}" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                        @endif
+                    </div>
                 @else
-                <img src="{{ $user->getImageUrl() }}" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto overflow-hidden">
+                        @if(!isset($user->picture->picture))
+                        <img src="/black.jpeg" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                        @else
+                        <img src="{{ $user->getImageUrl() }}" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-2 border-gray-300">
+                        @endif
+                    </div>
                 @endif
-            </div>
+            @endauth
             <h1 class="text-2xl font-semibold mt-4">{{$user->name}}</h1>
             <p class="text-gray-600">{{$user->profil->profession ?? " "}}</p>
         </div>
