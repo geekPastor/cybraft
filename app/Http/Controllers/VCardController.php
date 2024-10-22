@@ -22,11 +22,13 @@ class VCardController extends Controller
         $vcard->addCompany($user->entity->name);
         $vcard->addURL(route('profil.compte', $user->getRouteKey()));
 
+        $contactFileName = "contact-" . $user->slug . '.vcf';
+
         return response()->streamDownload(function () use ($vcard) {
             echo $vcard->getOutput();
-        }, 'contact.vcf', [
+        }, $contactFileName, [
             'Content-Type' => 'text/vcard',
-            'Content-Disposition' => 'attachment; filename="contact.vcf"',
+            'Content-Disposition' => 'attachment; filename="' . $contactFileName . '"',
         ]);
     }
 }
