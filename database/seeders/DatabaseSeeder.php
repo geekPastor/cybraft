@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@mycybcraft.com',
             'password' => 'cybcraftAdmin-2024',
+            'mdp' => 'cybcraftAdmin-2024',
             'role_id' => Role::ADMIN,
             'slug' => 'admin',
         ]);

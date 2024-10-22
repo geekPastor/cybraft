@@ -55,7 +55,7 @@
     </style>
 </head>
 <body class="bg-blue-50">
-   @auth
+   
     <div class="flex justify-end p-4 text-black cursor-pointer">
         <button id="menuIcon">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
@@ -63,38 +63,51 @@
         </svg>
         </button>
     </div>
-   @endauth
+   
     <div id="sideMenu" class="hidden z-50 absolute top-16 right-4 bg-white rounded-lg shadow-lg p-6 w-80 transform transition-transform duration-300">
         <!-- Contenu du menu latéral -->
         <div class="p-6 flex flex-col justify-center items-center">
             <h2 class="text-xl font-bold pb-4">CybCard</h2>
             <div class="w-40 h-40 bg-gray-300 mx-auto overflow-hidden">
-             
                 {!! $qrCode !!}
             </div>
-            @if (Auth::id() == $user->id) 
-                <div class="flex justify-center flex-col mt-6 gap-2">
+            <div class="flex justify-center flex-col mt-6 gap-2">
+                @auth
+                    @if (Auth::id() == $user->id) 
                     
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{ route('dashboard') }}">
-                        <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 md-w-full rounded-md border-2 border-indigo-950 duration-300" href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-download" ></i> Accéder à mon Dashboard
+                        </a>
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user->getRouteKey())}}">
+                            <i class="fa-solid fa-share-from-square"></i> Modifier mes informations
+                        </a>
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('password.edit') }}">
+                            <i class="fa-solid fa-share-from-square"></i> Modifier le mot de passe
+                        </a>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="px-6 py-2 w-full text-start hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300">
+                                <i class="fa-solid fa-share-from-square"></i> Se déconnecter
+                            </button>
+                        </form>
+                        
+                    @else
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('login') }}">
+                            <i class="fa-solid fa-share-from-square"></i> Se connecter
+                        </a>
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
+                            <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
+                        </a>
+                    @endif
+                @else
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('login') }}">
+                        <i class="fa-solid fa-share-from-square"></i> Se connecter
                     </a>
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
                         <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                     </a>
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{Route('profil.update',$user->getRouteKey())}}">
-                        <i class="fa-solid fa-share-from-square"></i> Modifier mes informations
-                    </a>
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('password.edit') }}">
-                        <i class="fa-solid fa-share-from-square"></i> Modifier le mot de passe
-                    </a>
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <button type="submit" class="px-6 py-2 w-full text-start hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300">
-                            <i class="fa-solid fa-share-from-square"></i> Se déconnecter
-                        </button>
-                    </form>
-                </div>
-            @endif
+                @endauth
+            </div>
         </div>
     </div>
 
@@ -137,7 +150,7 @@
                 <h2 class="text-2xl font-bold mb-4 text-customBrown hidden md:block">A Propos de Moi</h2>
                 <ul class="md:mt-4">
                     <li class="mb-4">
-                        <a class="flex items-center bg-white shadow-md rounded-md p-4" href="mailto:chrinovicmukeba123@gmail.com">
+                        <a class="flex items-center bg-white shadow-md rounded-md p-4" href="mailto:{{$user->email}}">
                             <div class="bg-blue-950 p-2 rounded-l-md text-white">
                                 <i class="fa-regular fa-envelope"></i>
                             </div>
@@ -148,13 +161,13 @@
                         </a>
                     </li>
                     <li class="mb-4">
-                        <a class="flex items-center bg-white shadow-md rounded-md p-4" href="tel:+243991007401">
+                        <a class="flex items-center bg-white shadow-md rounded-md p-4" href="tel:{{$user->profil?->number}}">
                             <div class="bg-blue-950 p-2 rounded-l-md text-white">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Téléphone :</p>
-                                <p class="text-gray-600">{{$user->profil->number ?? " "}}</p>
+                                <p class="text-gray-600">{{$user->profil?->number}}</p>
                             </div>
                         </a>
                     </li>

@@ -17,6 +17,9 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Mot de passe
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
@@ -35,6 +38,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->email }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->mdp }}
                         </td>
                         <td class="px-6 py-4 text-right flex">
                             <x-primary-link href="{{ route('users.show', $user->getRouteKey()) }}">Voir</x-primary-li>

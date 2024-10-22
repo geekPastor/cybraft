@@ -41,6 +41,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->validated();
+        $data['mdp'] = $data['password'];
         $data['password'] = Hash::make($data['password']);
         $data['slug'] = \Str::slug($data['name']);
         

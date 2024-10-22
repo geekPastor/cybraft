@@ -20,7 +20,13 @@ class VCardController extends Controller
         $vcard->addJobtitle($user->profil->profession);
         $vcard->addRole($user->profil->profession);
         $vcard->addCompany($user->entity->name);
+        $vcard->addURL(route('profil.compte', $user->getRouteKey()));
 
-        return response($vcard->download());
+        return response()->streamDownload(function () use ($vcard) {
+            echo $vcard->getOutput();
+        }, 'contact.vcf', [
+            'Content-Type' => 'text/vcard',
+            'Content-Disposition' => 'attachment; filename="contact.vcf"',
+        ]);
     }
 }
