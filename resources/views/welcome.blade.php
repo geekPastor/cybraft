@@ -297,9 +297,11 @@
             @endif
 
             @if ($user->id != Auth::id())
-                <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
-                    <i class="fa-solid fa-download"></i>Enregistrer contact
-                </button>
+                @if ($user->profil && $user->entity) 
+                    <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
+                        <i class="fa-solid fa-download"></i>Enregistrer contact
+                    </button>
+                @endif
                 <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
                     <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
                 </button>
