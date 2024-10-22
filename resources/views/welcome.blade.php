@@ -344,7 +344,7 @@
                                 @auth
                                     @if (Auth::id() == $user->id) 
                                         <div class="flex justify-center mt-4">
-                                            <a href="{{ route('entities.services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
+                                            <a href="{{ route('services.create') }}" class="bg-blue-950 text-white rounded-md px-4 py-2">Ajouter un service</a>
                                         </div>
                                     @endif
                                 @endauth

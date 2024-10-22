@@ -16,7 +16,7 @@ class DashboardController extends Controller
         if (Auth::user()->role_id == Role::ADMIN) {
             $data['users'] = User::count();
         } else {
-            $data['services'] = Auth::user()->entity->services->count();
+            $data['services'] = Auth::user()->entity ? Auth::user()->entity->services->count() : 0;
         }
 
         return view('dashboard', $data);
