@@ -50,10 +50,12 @@
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                         <textarea name='description' id="description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{$user->profil?->bio}}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <div>
                         <label for="competences" class="block text-sm font-medium text-gray-700">Compétences</label>
                         <textarea name='competences' id="competences" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" >{{$user->profil?->competences}}</textarea>
+                        <x-input-error :messages="$errors->get('competences')" class="mt-2" />
                     </div>
                 </div>
             </div>

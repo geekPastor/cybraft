@@ -29,8 +29,8 @@ class updateRequest extends FormRequest
         'email' => 'required|string|email|max:255',
         'naissance' => 'required|date',
         'domicile' => 'required|string|max:255',
-        'description' => 'required|string',
-        'competences' => 'required|string',
+        'description' => 'required|string|max:2000',
+        'competences' => 'required|string|max:500',
 
 
         // Réseaux sociaux
