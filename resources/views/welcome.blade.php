@@ -95,7 +95,7 @@
                         <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('login') }}">
                             <i class="fa-solid fa-share-from-square"></i> Se connecter
                         </a>
-                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
+                        <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/message/MXYG42F32WEZE1">
                             <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                         </a>
                     @endif
@@ -103,7 +103,7 @@
                     <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="{{ route('login') }}">
                         <i class="fa-solid fa-share-from-square"></i> Se connecter
                     </a>
-                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/243829255398">
+                    <a class="px-6 py-2 hover:bg-indigo-950 hover:text-white text-indigo-950 rounded-md border-2 border-indigo-950 duration-300" href="https://wa.me/message/MXYG42F32WEZE1">
                         <i class="fa-solid fa-share-from-square"></i> Obtenir ma carte WmCard
                     </a>
                 @endauth
@@ -124,22 +124,26 @@
             <p class="text-gray-600">{{$user->profil->profession ?? " "}}</p>
         </div>
         <!--modification de profil-->
-        <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white p-8 rounded-lg w-80">
+        @auth
+            @if (Auth::id() == $user->id) 
+                <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                    <div class="bg-white p-8 rounded-lg w-80">
 
-              <h2 class="text-lg font-bold mb   -4">Modifier la photo de profil</h2>
-              
-              
-              <form id="profileForm" action={{Route("uppload",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
-                <input type="file" name="picture" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
-                @csrf
-                <div class="mt-4 flex justify-end">
-                  <button type="button" id="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Annuler</button>
-                  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Enregistrer</button>
+                    <h2 class="text-lg font-bold mb   -4">Modifier la photo de profil</h2>
+                    
+                    
+                    <form id="profileForm" action={{Route("uppload",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
+                        <input type="file" name="picture" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                        @csrf
+                        <div class="mt-4 flex justify-end">
+                        <button type="button" id="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Annuler</button>
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Enregistrer</button>
+                        </div>
+                    </form>
+                    </div>
                 </div>
-              </form>
-            </div>
-        </div>
+            @endif
+        @endauth
         <!--fin-->
         <div class="border-t border-gray-200"></div>
             
