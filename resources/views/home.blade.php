@@ -1846,7 +1846,7 @@
                 <div class="col-md-6">
                     <div class="d-flex">
                         <div class="logo">
-                            <a href="https://wolf-id.com">
+                            <a href="">
                                 <img src="{{ asset('/LOGOS/Originale.png') }}" alt="logo.alt" />
                             </a>
                         </div>
