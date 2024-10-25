@@ -10,7 +10,7 @@
                     <th scope="col" class="px-6 py-3">
                         Nom complet
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-4 py-3">
                         Role
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -33,7 +33,7 @@
                         <td class="px-6 py-4 font-medium whitespace-nowrap">
                             {{ $user->name }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-4 py-4">
                             {{ $user->role->name }}
                         </td>
                         <td class="px-6 py-4">
@@ -46,7 +46,8 @@
                             <x-primary-link href="{{ route('users.show', $user->getRouteKey()) }}">Voir</x-primary-li>
                         
                             @if ($user->id !== Auth::id())
-                                <form action="{{ route('users.destroy', $user->getRouteKey()) }}" method="post" class="d-inline ml-1"
+                                <x-secondary-link class="inline-block mx-2" href="{{ route('users.edit', $user->getRouteKey()) }}">Editer</x-primary-li>
+                                <form action="{{ route('users.destroy', $user->getRouteKey()) }}" method="post" class="d-inline"
                                 onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"
                                 >
                                     @csrf

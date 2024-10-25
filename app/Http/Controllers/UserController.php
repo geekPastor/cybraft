@@ -73,7 +73,25 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        $data['password'] = Hash::make($data['password']);
+
+        // Check email
+        if ($user->email != $data['email']) {
+            $request->validate([
+                'email' => 'unique:users',
+            ]);
+        }
+
+        $user->update($data);
+
+        return to_route('users.index')->with('success', 'Utilisateur modifié avec succès');
     }
 
     /**
