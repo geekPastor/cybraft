@@ -129,7 +129,7 @@
                 <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                     <div class="bg-white p-8 rounded-lg w-80">
 
-                    <h2 class="text-lg font-bold mb   -4">Modifier la photo de profil</h2>
+                    <h2 class="text-lg font-bold mb-4">Modifier la photo de profil</h2>
                     
                     
                     <form id="profileForm" action={{Route("uppload",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
@@ -171,7 +171,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Téléphone :</p>
-                                <p class="text-gray-600">{{$user->profil?->number}}</p>
+                                <p class="text-gray-600">{{$user->profil->number ?? 'Indisponible'}}</p>
                             </div>
                         </a>
                     </li>
@@ -189,7 +189,7 @@
                                     @endif
                                 </p>
                                 <p class="text-gray-600">
-                                    {{$user->entity?->name}}
+                                    {{$user->entity->name ?? "Indisponible"}}
                                     @auth
                                         @if (Auth::id() == $user->id) 
                                             (<x-link href="{{ route('entities.create') }}">Editer</x-link>)
@@ -211,7 +211,7 @@
                                 @else 
                                     Adresse entité :
                                 @endif</p>
-                                <p class="text-gray-600">{{$user->entity?->address}}</p>
+                                <p class="text-gray-600">{{$user->entity->address ?? "Indisponible"}}</p>
                             </div>
                         </div>
                     </li>
@@ -254,7 +254,7 @@
             @endhasSocial
             <div class="w-full md:w-6/12">
                 <h2 class="text-2xl font-bold mb-2 text-blue-950">En savoir Plus sur Moi</h2>
-                <p class="mb-4">{{$user->profil->bio ?? " "}}</p>
+                <p class="mb-4">{{$user->profil->bio ?? "Rien a été fourni."}}</p>
             </div>
         </div>
       
@@ -294,18 +294,15 @@
         @endhasSocial
     
         <div class="flex justify-center items-center flex-col mt-6 gap-4 w-full">
-            @if ($user->profil) 
-                <form id="vcard" action="{{ route('vcard', $user->getRouteKey()) }}" method="post" class="inline-block">
-                    @csrf
-                </form>
-            @endif
+            
+            <form id="vcard" action="{{ route('vcard', $user->getRouteKey()) }}" method="post" class="inline-block">
+                @csrf
+            </form>
 
             @if ($user->id != Auth::id())
-                @if ($user->profil && $user->entity) 
-                    <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
-                        <i class="fa-solid fa-download"></i>Enregistrer contact
-                    </button>
-                @endif
+                <button form="vcard" type="submit" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300 text-center" href="tel:{{$user->profil->number ?? " "}}">
+                    <i class="fa-solid fa-download"></i> Enregistrer contact
+                </button>
                 <button onclick="togglePopup()" class="px-6 py-2 hover:bg-blue-950 hover:text-white text-blue-950 customBG rounded-md border-2 border-blue-950 duration-300">
                     <i class="fa-solid fa-share-from-square"></i> Envoyer mon contact
                 </button>

@@ -26,7 +26,7 @@ class EntityRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'address' => ['required', 'string', 'max:255'],
-            'website' => ['required', 'url'],
+            'website' => ['required'],
         ];
     }
 }

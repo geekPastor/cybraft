@@ -11,15 +11,15 @@ class VCardController extends Controller
     public function __invoke(User $user)
     {
         $vcard = new VCard();
-
+        
         $vcard->addName($user->name);
         $vcard->addEmail($user->email);
-        $vcard->addPhoneNumber($user->profil->number);
-        $vcard->addAddress(null, null, null, null, null, null, $user->profil->domicile);
-        $vcard->addBirthday($user->profil->naissance);
-        $vcard->addJobtitle($user->profil->profession);
-        $vcard->addRole($user->profil->profession);
-        $vcard->addCompany($user->entity->name);
+        $vcard->addPhoneNumber($user->profil->number ?? 'Indisponible');
+        $vcard->addAddress(null, null, null, null, null, null, $user->profil->domicile ?? 'Indisponible');
+        $vcard->addBirthday($user->profil->naissance ?? 'Indisponible');
+        $vcard->addJobtitle($user->profil->profession ?? 'Indisponible');
+        $vcard->addRole($user->profil->profession ?? 'Indisponible');
+        $vcard->addCompany($user->entity->name ?? 'Indisponible');
         $vcard->addURL(route('profil.compte', $user->getRouteKey()));
 
         $contactFileName = "contact-" . $user->slug . '.vcf';

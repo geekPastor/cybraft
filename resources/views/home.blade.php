@@ -1809,14 +1809,14 @@
 									<ul class="products wordpro-columns-3 container">
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
                                             <a href="https://wa.me/message/MXYG42F32WEZE1" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/cybCard/standard.jpg') }}" data-lazy-src="{{ asset('/cybCard/3.Standard Recto.jpg') }}">
+                                                <img src="{{ asset('/cybCard/essential.jpg') }}" data-lazy-src="{{ asset('/cybCard/2. Essentiel Verso.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Standard</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>29,99<span class="woocommerce-Price-currencySymbol">&euro;/an</span></bdi></span></span>
                                             </a>
                                         </li>
                                         <li class="product type-product post-319 status-publish first instock product_cat-wolfcards has-post-thumbnail shipping-taxable purchasable product-type-variable">
                                             <a href="https://wa.me/message/MXYG42F32WEZE1" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                                <img src="{{ asset('/cybCard/essential.jpg') }}" data-lazy-src="{{ asset('/cybCard/2. Essentiel Verso.jpg') }}">
+                                                <img src="{{ asset('/cybCard/standard.jpg') }}" data-lazy-src="{{ asset('/cybCard/3.Standard Recto.jpg') }}">
                                                 <h2 class="woocommerce-loop-product__title">CybCard <span class="p-italic">Premium</span></h2>
                                                 <span class="price"><span class="woocommerce-Price-amount amount"><bdi>44,99<span class="woocommerce-Price-currencySymbol">&euro;/an</span></bdi></span></span>
                                             </a>
