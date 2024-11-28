@@ -26,6 +26,7 @@ class updateRequest extends FormRequest
         'profession' => 'required|string|max:255',
         'sexe' => 'required|string|max:10',
         'number' => 'required|string|max:20',
+        'number2' => 'nullable|string|max:20',
         'email' => 'required|string|email|max:255',
         'naissance' => 'required|date',
         'domicile' => 'nullable|string|max:255',
@@ -35,15 +36,42 @@ class updateRequest extends FormRequest
 
         // Réseaux sociaux
 
-        'facebook' => 'nullable|string|max:255',
-        'twitter' => 'nullable|string|max:255',
-        'instagram' => 'nullable|string|max:255',
-        'linkedin' => 'nullable|string|max:255',
-        'tiktok' => 'nullable|string|max:255',
-        'theads' => 'nullable|string|max:255',
-        'telegram' => 'nullable|string|max:255',
-        'whatsapp' => 'nullable|string|max:255',
+        'facebook' => 'nullable|string|max:255|starts_with:https://',
+        'twitter' => 'nullable|string|max:255|starts_with:https://',
+        'instagram' => 'nullable|string|max:255|starts_with:https://',
+        'linkedin' => 'nullable|string|max:255|starts_with:https://',
+        'tiktok' => 'nullable|string|max:255|starts_with:https://',
+        'theads' => 'nullable|string|max:255|starts_with:https://',
+        'telegram' => 'nullable|string|max:255|starts_with:https://',
+        'whatsapp' => 'nullable|string|max:255|starts_with:https://',
+        
+        'files' => 'nullable',
+        'files.*' => 'nullable|max:10240',
     ];
 }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Le nom est obligatoire',
+            'profession.required' => 'La profession est obligatoire',
+            'sexe.required' => 'Le sexe est obligatoire',
+            'number.required' => 'Le numéro de téléphone est obligatoire',
+            'email.required' => 'L\'adresse email est obligatoire',
+            'naissance.required' => 'La date de naissance est obligatoire',
+            'facebook.starts_with' => 'Le lien doit commencer par https://',
+            'twitter.starts_with' => 'Le lien doit commencer par https://',
+            'instagram.starts_with' => 'Le lien doit commencer par https://',
+            'linkedin.starts_with' => 'Le lien doit commencer par https://',
+            'tiktok.starts_with' => 'Le lien doit commencer par https://',
+            'theads.starts_with' => 'Le lien doit commencer par https://',
+            'telegram.starts_with' => 'Le lien doit commencer par https://',
+            'whatsapp.starts_with' => 'Le lien doit commencer par https://',
+        ];
+    }
 }

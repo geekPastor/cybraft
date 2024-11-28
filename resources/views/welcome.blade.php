@@ -171,7 +171,13 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Téléphone :</p>
-                                <p class="text-gray-600">{{$user->profil->number ?? 'Indisponible'}}</p>
+                                <p class="text-gray-600">
+                                    @if ($user->profil?->number && $user->profil?->number2)
+                                        {{$user->profil->number}} / {{$user->profil->number2}}
+                                    @else
+                                        {{$user->profil?->number ?? $user->profil?->number2 ?? 'Indisponible'}}
+                                    @endif
+                                </p>
                             </div>
                         </a>
                     </li>
@@ -223,30 +229,30 @@
                     <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
                     <!-- Ajoutez les icônes des réseaux sociaux ici -->
                     <div class="flex justify-center items-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
-                        @if(!empty($user->profil->reseau->facebook))                  
+                        @if(!empty($user->profil->reseau->facebook) && $user->profil->reseau->facebook != "https://")                  
                         <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->twitter)) 
+                        @if(!empty($user->profil->reseau->twitter) && $user->profil->reseau->twitter != "https://") 
                         <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->theads))
+                        @if(!empty($user->profil->reseau->theads) && $user->profil->reseau->theads != "https://")
                         <a href={{$user->profil->reseau->theads}} class="text-3xl">
                             <img class="h-8" src="{{ asset('threads.png') }}" />
                         </a>
                         @endif
-                        @if(!empty($user->profil->reseau->instagram))
+                        @if(!empty($user->profil->reseau->instagram) && $user->profil->reseau->instagram != "https://")
                         <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->linkedin))
+                        @if(!empty($user->profil->reseau->linkedin) && $user->profil->reseau->linkedin != "https://")
                         <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->telegram))
+                        @if(!empty($user->profil->reseau->telegram) && $user->profil->reseau->telegram != "https://")
                         <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->whatsapp))
+                        @if(!empty($user->profil->reseau->whatsapp) && $user->profil->reseau->whatsapp != "https://")
                         <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
                         @endif
-                        @if(!empty($user->profil->reseau->tiktok))
+                        @if(!empty($user->profil->reseau->tiktok) && $user->profil->reseau->tiktok != "https://")
                         <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
                         @endif
                     </div>
@@ -263,30 +269,30 @@
             <div class="pb-2  hidden md:block">
                 <h2 class="text-blue-950 text-2xl text-center font-bold mb-4">Mes Réseaux Sociaux</h2>
                 <div class="flex justify-center items-center space-x-4 mt-8 gap-16 flex-wrap text-blue-950">
-                    @if(!empty($user->profil->reseau->facebook))                  
+                    @if(!empty($user->profil->reseau->facebook) && $user->profil->reseau->facebook != "https://")                  
                       <a href={{$user->profil->reseau->facebook}} class="text-3xl"><i class="fab fa-facebook text-4xl text-blue-600"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->twitter)) 
+                    @if(!empty($user->profil->reseau->twitter) && $user->profil->reseau->twitter != "https://") 
                       <a href={{$user->profil->reseau->twitter}} class="text-3xl"><i class="fa-brands fa-twitter text-4xl text-blue-600"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->theads))
+                    @if(!empty($user->profil->reseau->theads) && $user->profil->reseau->theads != "https://")
                     <a href={{$user->profil->reseau->theads}} class="text-3xl">
                         <img class="h-8" src="{{ asset('threads.png') }}" />
                     </a>
                     @endif
-                    @if(!empty($user->profil->reseau->instagram))
+                    @if(!empty($user->profil->reseau->instagram) && $user->profil->reseau->instagram != "https://")
                       <a href={{$user->profil->reseau->instagram}} class="text-3xl insta"><i class="fab fa-instagram text-4xl text-black"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->linkedin))
+                    @if(!empty($user->profil->reseau->linkedin) && $user->profil->reseau->linkedin != "https://")
                       <a href="{{$user->profil->reseau->linkedin}}" class="text-3xl link"><i class="fab fa-linkedin text-4xl text-blue-700"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->telegram))
+                    @if(!empty($user->profil->reseau->telegram) && $user->profil->reseau->telegram != "https://")
                       <a href={{$user->profil->reseau->telegram}} class="text-3xl link"><i class="fa-brands fa-telegram text-4xl text-blue-700"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->whatsapp))
+                    @if(!empty($user->profil->reseau->whatsapp) && $user->profil->reseau->whatsapp != "https://")
                       <a href={{$user->profil->reseau->whatsapp}} class="text-3xl link"><i class="fa-brands fa-whatsapp text-4xl text-green-700"></i></a>
                     @endif
-                    @if(!empty($user->profil->reseau->tiktok))
+                    @if(!empty($user->profil->reseau->tiktok) && $user->profil->reseau->tiktok != "https://")
                       <a href={{$user->profil->reseau->tiktok}} class="text-3xl link"><i class="fa-brands fa-tiktok text-4xl text-black"></i></a>
                     @endif
                 </div>
@@ -368,6 +374,37 @@
                         </div>
                     @endif
                 @endif
+            </div>
+        @endif
+
+        @if ($user->files->count() != 0) 
+            <div>
+                <h2 class="text-2xl font-bold mb-4 text-blue-950 text-center">Mes pièces jointes</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8">
+                @foreach ($user->files as $file)
+                    <div class="flex items center bg-white shadow-md rounded-md p-4">
+                        <div class="bg-blue-950 p-2 rounded-l-md text-white">
+                            <i class="fa-regular fa-file"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-700 font-semibold">{{$file->name}}</p>
+                            <a href="{{ asset($file->getUrl()) }}" class="text-blue-500 font-bold hover:underline">Télécharger le fichier</a>
+                            
+                            {{-- Delete the file if authenticated user is owner --}}
+                            @auth
+                                @if (Auth::id() == $user->id) 
+                                    <form action="{{ route('files.destroy', $file) }}" method="post" class="inline" id="deleteFile_{{ $loop->iteration }}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button type="submit" class="text-red-500 font-bold hover:underline inline-block" form="deleteFile_{{ $loop->iteration }}">Supprimer</button>
+                                @endif
+                            @endauth
+                        </div>
+                    </div>
+                @endforeach
             </div>
         @endif
 

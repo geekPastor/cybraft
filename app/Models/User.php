@@ -111,4 +111,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contact::class);
     }
+
+    /**
+     * Get all of the files for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files(): HasMany
+    {
+        return $this->hasMany(UserFile::class);
+    }
 }

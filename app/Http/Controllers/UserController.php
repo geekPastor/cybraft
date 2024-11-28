@@ -79,7 +79,7 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-
+        $data['mdp'] = $data['password'];
         $data['password'] = Hash::make($data['password']);
 
         // Check email

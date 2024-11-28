@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeleteUserFileController;
 use App\Http\Controllers\EntityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -53,6 +54,8 @@ Route::middleware("auth")->group(function(){
     Route::resource('contacts', ContactController::class)->only(['index']);
 
     Route::get("dashboard", [DashboardController::class,"index"])->name("dashboard");
+
+    Route::delete('files/{file}', DeleteUserFileController::class)->name('files.destroy');
 
     Route::post("/logout",function(){
         Auth::logout();

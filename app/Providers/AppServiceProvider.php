@@ -40,7 +40,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('hasSocial', function (User $user) {
-            return $user->profil?->reseau->facebook || $user->profil?->reseau->twitter || $user->profil?->reseau->linkedin || $user->profil?->reseau->instagram || $user->profil?->reseau->tiktok || $user->profil?->reseau->telegram || $user->profil?->reseau->whatsapp || $user->profil?->reseau->theads;
+            // facebook, twitter, linkedin, instagram, tiktok, telegram, whatsapp, theads
+            return( $user->profil?->reseau->facebook && $user->profil?->reseau->facebook != 'https://') ||
+                ($user->profil?->reseau->twitter && $user->profil?->reseau->twitter != 'https://') ||
+                ($user->profil?->reseau->linkedin && $user->profil?->reseau->linkedin != 'https://') ||
+                ($user->profil?->reseau->instagram && $user->profil?->reseau->instagram != 'https://') ||
+                ($user->profil?->reseau->tiktok && $user->profil?->reseau->tiktok != 'https://') ||
+                ($user->profil?->reseau->telegram && $user->profil?->reseau->telegram != 'https://') ||
+                ($user->profil?->reseau->whatsapp && $user->profil?->reseau->whatsapp != 'https://') ||
+                ($user->profil?->reseau->theads && $user->profil?->reseau->theads != 'https://');
         });
     }
 }

@@ -29,7 +29,7 @@
                 <div>
                     <x-input-label for="password" :value="__('Mot de passe')" />
                     <x-text-input id="password" class="block mt-1 w-full"
-                                    type="password"
+                                    type="text"
                                     name="password"
                                     required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />

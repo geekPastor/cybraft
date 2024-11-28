@@ -15,6 +15,7 @@ class VCardController extends Controller
         $vcard->addName($user->name);
         $vcard->addEmail($user->email);
         $vcard->addPhoneNumber($user->profil->number ?? 'Indisponible');
+        $vcard->addPhoneNumber($user->profil->number2 ?? 'Indisponible');
         $vcard->addAddress(null, null, null, null, null, null, $user->profil->domicile ?? 'Indisponible');
         $vcard->addBirthday($user->profil->naissance ?? 'Indisponible');
         $vcard->addJobtitle($user->profil->profession ?? 'Indisponible');

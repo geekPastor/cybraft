@@ -54,6 +54,12 @@
                                     @method('delete')
                                     <x-danger-button>Supprimer</x-danger-button>
                                 </form>
+                                <x-secondary-button
+                                    class="inline-block mx-2"
+                                    onclick="copyToClipboard('{{ route('profil.compte', $user->getRouteKey()) }}')"
+                                >
+                                    Lien
+                                </x-secondary-button>
                             @endif
                         </td>
                     </tr>
@@ -64,4 +70,15 @@
 
     {{ $users->links() }}
 
+    <script>
+        function copyToClipboard(text) {
+            var input = document.createElement('input');
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            alert('Lien copié dans le presse-papiers');
+        }
+    </script>
 </x-app-layout>

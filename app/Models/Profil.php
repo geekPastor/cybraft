@@ -15,6 +15,7 @@ class Profil extends Model
         'profession',
         'sexe',
         'number',
+        'number2',
         'naissance',
         'domicile', 
         'competences',
