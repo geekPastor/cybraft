@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <x-input-label for="number2">Deuxième numéro téléphone</x-input-label>
-                        <x-text-input id="number2" class="block mt-1 w-full" type="text" name="number2" :value="old('number2', $user->profil?->number2)" required autofocus autocomplete="number2" />
+                        <x-text-input id="number2" class="block mt-1 w-full" type="text" name="number2" :value="old('number2', $user->profil?->number2)" autofocus autocomplete="number2" />
                         <x-input-error :messages="$errors->get('number2')" class="mt-2" />
                     </div>
                     <div>
