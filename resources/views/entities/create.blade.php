@@ -15,7 +15,7 @@
     <x-app-layout :title="$title">
     
     <x-form-card>
-        <form action="{{ $route }}" method="POST">
+        <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method($method)
             <div>
@@ -47,6 +47,21 @@
                     @endforeach
                 </x-select-input>
                 <x-input-error :messages="$errors->get('entity_type_id')" class="mt-2" />
+            </div>
+            <div class="mb-3">
+                <x-input-label for="files" class="block text-sm font-medium text-gray-700">Ajouter une pièce jointe (Min : 10 mégas)</x-input-label>
+                <x-text-input type="file" name='files[]' id="files" class="block mt-1 w-full" multiple/>
+                <x-input-error :messages="$errors->get('files')" class="mt-2" />
+                
+                @if ($errors->has('files.*'))
+                    @foreach ($errors->get('files.*') as $key => $messages)
+                        <div class="text-red-500 text-sm mt-1">
+                            @foreach ($messages as $message)
+                                <p>{{ $message }}</p>
+                            @endforeach
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div>
                 <x-primary-button type="submit">Enregistrer</x-primary-button>

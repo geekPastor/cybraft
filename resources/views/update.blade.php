@@ -54,21 +54,6 @@
                         <x-text-input type="text" name='domicile' id="domicile" class="block mt-1 w-full" value="{{ old('domicile', $user->profil?->domicile) }}"/>
                         <x-input-error :messages="$errors->get('domicile')" class="mt-2" />
                     </div>
-                    <div>
-                        <x-input-label for="files" class="block text-sm font-medium text-gray-700">Ajouter une pièce jointe (Min : 10 mégas)</x-input-label>
-                        <x-text-input type="file" name='files[]' id="files" class="block mt-1 w-full" multiple/>
-                        <x-input-error :messages="$errors->get('files')" class="mt-2" />
-                        
-                        @if ($errors->has('files.*'))
-                            @foreach ($errors->get('files.*') as $key => $messages)
-                                <div class="text-red-500 text-sm mt-1">
-                                    @foreach ($messages as $message)
-                                        <p>{{ $message }}</p>
-                                    @endforeach
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
                 </div>
             </div>
             <div>

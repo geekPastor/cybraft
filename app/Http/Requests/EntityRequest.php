@@ -27,6 +27,9 @@ class EntityRequest extends FormRequest
             'description' => ['required', 'string'],
             'address' => ['required', 'string', 'max:255'],
             'website' => ['required'],
+
+            'files' => 'nullable',
+            'files.*' => 'nullable|max:10240',
         ];
     }
 }

@@ -72,24 +72,6 @@ class ProfilController extends Controller
                 'competences' => $validated['competences'],
             ]
         );
-
-        if ($request->file('files')) {
-            foreach ($request->file('files') as $file) {
-                $fileExtension = $file->getClientOriginalExtension();
-                $fileName = \Str::random(10) . '.' . $fileExtension;
-                // Get original file name without extension
-                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                // Store file
-                $fileName = $file->storeAs('files', $fileName, 'public');
-                // Store file in database
-                UserFile::create([
-                    'user_id' => $user->id,
-                    'name' => $originalName,
-                    'path' => $fileName,
-                ]);
-            }
-        }
-
         // Créer ou mettre à jour les identifiants reseaux
         $profilData = $validated;
         $profilData['profil_id'] = $profil->id;
