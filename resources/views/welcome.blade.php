@@ -160,7 +160,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Adresse email :</p>
-                                <p class="text-gray-600 break-words">{{$user->email ?? " "}}</p>
+                                <p class="text-gray-600 whitespace-wrap overflow-hidden text-ellipsis">{{$user->email ?? " "}}</p>
                             </div>
                         </a>
                     </li>
