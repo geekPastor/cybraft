@@ -160,7 +160,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-gray-700 font-semibold">Adresse email :</p>
-                                <p class="text-gray-600 whitespace-wrap overflow-hidden text-ellipsis">{{$user->email ?? " "}}</p>
+                                <p class="text-gray-600 truncate">{{$user->email ?? " "}}</p>
                             </div>
                         </a>
                     </li>
@@ -389,12 +389,13 @@
                             <i class="fa-regular fa-file"></i>
                         </div>
                         <div class="ml-4">
-                            <a href="{{ asset($file->getUrl()) }}" class="text-blue-500 font-bold hover:underline">{{$file->name}}</a>
+                            <p class="text-gray-700 font-semibold">{{$file->name}}</p>
+                            <a href="{{ asset($file->getUrl()) }}" class="text-blue-500 font-bold hover:underline">Télécharger le fichier</a>
                             
                             {{-- Delete the file if authenticated user is owner --}}
                             @auth
                                 @if (Auth::id() == $user->id) 
-                                    <form action="{{ route('files.destroy', $file) }}" method="post" id="deleteFile_{{ $loop->iteration }}">
+                                    <form action="{{ route('files.destroy', $file) }}" method="post" class="inline" id="deleteFile_{{ $loop->iteration }}">
                                         @csrf
                                         @method('DELETE')
                                     </form>
