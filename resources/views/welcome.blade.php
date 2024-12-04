@@ -159,11 +159,24 @@
                                 <i class="fa-regular fa-envelope"></i>
                             </div>
                             <div class="ml-4">
-                                <p class="text-gray-700 font-semibold">Adresse email :</p>
-                                <p class="text-gray-600 truncate">{{$user->email ?? " "}}</p>
+                                <p class="text-gray-700 font-semibold">Adresse email professionnelle :</p>
+                                <p class="text-gray-600 break-words">{{$user->email}}</p>
                             </div>
                         </a>
                     </li>
+                    @if ($user->profil?->private_email) 
+                        <li class="mb-4">
+                            <a class="flex items-center bg-white shadow-md rounded-md p-4" href="mailto:{{$user->email}}">
+                                <div class="bg-blue-950 p-2 rounded-l-md text-white">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-700 font-semibold">Adresse email privée :</p>
+                                    <p class="text-gray-600 break-words">{{$user->profil?->private_email}}</p>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
                     <li class="mb-4">
                         <a class="flex items-center bg-white shadow-md rounded-md p-4" href="tel:{{$user->profil?->number}}">
                             <div class="bg-blue-950 p-2 rounded-l-md text-white">

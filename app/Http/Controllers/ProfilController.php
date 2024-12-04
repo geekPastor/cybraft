@@ -57,20 +57,11 @@ class ProfilController extends Controller
             ]
         );
 
+        $validated['user_id'] = $user->id;
         // Créer ou mettre à jour le profil
         $profil = Profil::updateOrCreate(
             ['user_id' => $user->id],
-            [
-                'user_id' => $user->id,
-                'bio' => $validated['description'],
-                'profession' => $validated['profession'],
-                'sexe' => $validated['sexe'],
-                'number' => $validated['number'],
-                'number2' => $validated['number2'],
-                'naissance' => $validated['naissance'],
-                'domicile' => $validated['domicile'],
-                'competences' => $validated['competences'],
-            ]
+            $validated
         );
         // Créer ou mettre à jour les identifiants reseaux
         $profilData = $validated;

@@ -5,7 +5,7 @@
             @csrf
             <div>
                 <h2 class="text-lg font-semibold">Mon Identité</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 items-center">
                     <div>
                         <x-input-label for="nom" class="block text-sm font-medium text-gray-700">Nom</x-input-label>
                         <x-text-input type="text" name="name" id="nom" required class="block mt-1 w-full" value="{{ old('name', $user->name) }}"/>
@@ -40,9 +40,14 @@
                         <x-input-error :messages="$errors->get('number2')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="email" class="block text-sm font-medium text-gray-700">Adresse Mail</x-input-label>
+                        <x-input-label for="email" class="block text-sm font-medium text-gray-700">Adresse mail professionnelle</x-input-label>
                         <x-text-input type="email" name="email" id="email" required class="block mt-1 w-full" value="{{ $user->email }}"/>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input-label for="private_email" class="block text-sm font-medium text-gray-700">Adresse email privée</x-input-label>
+                        <x-text-input type="email" name="private_email" id="profession" class="block mt-1 w-full" value="{{ old('private_email', $user->profil?->private_email) }}"/>
+                        <x-input-error :messages="$errors->get('private_email')" class="mt-2" />
                     </div>
                     <div>
                         <x-input-label for="naissance" class="block text-sm font-medium text-gray-700">Date de Naissance</x-input-label>

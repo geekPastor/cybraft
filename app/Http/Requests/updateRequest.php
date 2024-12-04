@@ -47,6 +47,8 @@ class updateRequest extends FormRequest
         
         'files' => 'nullable',
         'files.*' => 'nullable|max:10240',
+
+        'private_email' => 'nullable|email',
     ];
 }
 

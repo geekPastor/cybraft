@@ -23,11 +23,11 @@ class MailRequest extends FormRequest
     {
         return [
             "name"=>["required"],
-            "email"=>["required"],
+            "email"=>["required", 'email'],
             "phone"=>["required"],
-            "adresse"=>["required"],
+            "adresse"=>["nullable"],
             "notes"=>["required"],
-            "toMail"=>['required'],
+            "toMail"=>['required','email'],
             "user_id"=>['required', 'exists:users,id'],
         ];
     }

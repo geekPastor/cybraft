@@ -19,6 +19,7 @@ class Profil extends Model
         'naissance',
         'domicile', 
         'competences',
+        'private_email',
     ];
     public function reseau()
     {
