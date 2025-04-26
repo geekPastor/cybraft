@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\updateRequest;
+use App\Http\Requests\UploadImageRequest;
 use App\Models\pictures;
-use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
 class StorageController extends Controller
@@ -12,7 +11,7 @@ class StorageController extends Controller
     private function uppload(UploadedFile $file){
         return $file->store('public','public');
     }
-    public function index(Request $request){
+    public function index(UploadImageRequest $request){
         $data=$request->file("picture");
         
         $user=$request->route("user");
@@ -24,7 +23,7 @@ class StorageController extends Controller
             ],);
         return back()->with("success","profil fait");
     }
-    public function background(Request $request)
+    public function background(UploadImageRequest $request)
     {
 
         $data=$request->file("picture");
