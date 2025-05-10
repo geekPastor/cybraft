@@ -85,7 +85,7 @@
                         <x-input-error :messages="$errors->get('facebook')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="twitter" class="block text-sm font-medium text-gray-700">Twitter</x-input-label>
+                        <x-input-label for="twitter" class="block text-sm font-medium text-gray-700">X</x-input-label>
                         <x-text-input type="text" name="twitter" id="twitter" class="block mt-1 w-full" value="{{ old('twitter',$user->profil?->reseau->twitter ?? 'https://') }}"/>
                         <x-input-error :messages="$errors->get('twitter')" class="mt-2" />
                     </div>

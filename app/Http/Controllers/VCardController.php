@@ -22,6 +22,7 @@ class VCardController extends Controller
         $vcard->addRole($user->profil->profession ?? 'Indisponible');
         $vcard->addCompany($user->entity->name ?? 'Indisponible');
         $vcard->addURL(route('profil.compte', $user->getRouteKey()));
+        $vcard->addPhoto(asset($user->picture->picture ? $user->getImageUrl() : "black.jpeg"));
 
         $contactFileName = "contact-" . $user->slug . '.vcf';
 

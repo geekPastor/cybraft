@@ -122,6 +122,18 @@
             </div>
             <h1 class="text-2xl font-semibold mt-4">{{$user->name}}</h1>
             <p class="text-gray-600">{{$user->profil->profession ?? " "}}</p>
+
+            @if ($errors->any())
+                <div class="mx-3">
+                    <div class="bg-red-100 border-l-4 border-red-800 p-3 text-start">
+                        <ul class="list-decimal"> 
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
         <!--modification de profil-->
         @auth
@@ -130,7 +142,7 @@
                     <div class="bg-white p-8 rounded-lg w-80">
 
                     <h2 class="text-lg font-bold mb-4">Modifier la photo de profil</h2>
-                    
+
                     
                     <form id="profileForm" action={{Route("uppload",['user'=>$user->id])}} method="POST" enctype="multipart/form-data">
                         <input type="file" name="picture" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
