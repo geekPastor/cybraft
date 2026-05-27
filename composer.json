@@ -34,7 +34,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php scripts/fix-portable-ascii.php"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -51,6 +52,11 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "patches": {
+            "voku/portable-ascii": {
+                "Fix deprecated nullable parameter": "patches/voku-portable-ascii-nullable-param.patch"
+            }
         }
     },
     "config": {
