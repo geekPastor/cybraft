@@ -1,0 +1,23 @@
+*   [33m7a9d2a0[m[33m ([m[1;31morigin/main[m[33m)[m Merge pull request #1 from geekPastor/dev
+[31m|[m[32m\[m  
+[31m|[m * [33m3e9ac49[m[33m ([m[1;31morigin/dev[m[33m)[m created change summary and quick deploy doc
+[31m|[m * [33mbe7d5fd[m Finish refactoring UIs
+[31m|[m * [33m55be52f[m Update composer.lock after fresh install
+[31m|[m * [33m93b9b22[m Fix deprecated nullable parameter in voku/portable-ascii
+[31m|[m[31m/[m  
+* [33mefcee67[m feat : added photo to vcard
+* [33m38ee83f[m fix : user profile picture null when no picture provided
+[32m|[m * [33ma87f04c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m add some changes
+[32m|[m * [33m9a88322[m make .htaccess
+[32m|[m[32m/[m  
+* [33m05b7245[m fix : changed entrepise to entreprise on entity_types table with ChangeEnterpriseEntityType seeder
+* [33m5f5a72c[m Ajout deuxieme mail
+* [33mcdd5332[m add truncate
+* [33m5f7ecaf[m Add text overflow
+* [33m6fbd8ee[m Ajout documents sur la page de modification de l'entité
+* [33m34cf402[m change somethings
+* [33m6cf530e[m Nouvelles fonctionnalités
+* [33m7605936[m make euro to dollars
+* [33mf5c364e[m make competences nullable
+* [33m773d6d2[m Modif accès users
+* [33m42b29c9[m téléchargement contact même si profil incomplet
