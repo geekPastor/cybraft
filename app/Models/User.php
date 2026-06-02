@@ -99,7 +99,10 @@ class User extends Authenticatable
 
     public function getImageUrl()
     {
-        return $this->picture?->picture ? asset(Storage::disk('public')->url($this->picture?->picture)) : asset('avatar.png');
+        if ($this->picture?->picture) {
+            return asset('storage/' . $this->picture->picture);
+        }
+        return asset('black.jpeg');
     }
 
     /**

@@ -2,7 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        color-scheme: light;
+    }
+
+    .dark {
+        color-scheme: dark;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-cyb-paper text-cyb-ink antialiased transition-colors duration-300 dark:bg-neutral-950 dark:text-neutral-100;
+    }
+
+    ::selection {
+        @apply bg-cyb-gold text-white;
+    }
+}
+
 @layer components {
+    .cyb-container {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .cyb-surface {
+        @apply border border-black/10 bg-white/85 shadow-soft backdrop-blur dark:border-white/10 dark:bg-neutral-900/80;
+    }
+
+    .cyb-card {
+        @apply rounded-lg border border-black/10 bg-white p-5 shadow-soft transition duration-200 dark:border-white/10 dark:bg-neutral-900;
+    }
+
+    .cyb-card-hover {
+        @apply hover:-translate-y-1 hover:border-cyb-gold/50 hover:shadow-gold;
+    }
+
+    .cyb-button-primary {
+        @apply inline-flex items-center justify-center rounded-md bg-cyb-gold px-5 py-3 text-sm font-semibold text-white shadow-gold transition hover:bg-cyb-bronze focus:outline-none focus:ring-2 focus:ring-cyb-gold focus:ring-offset-2 dark:focus:ring-offset-neutral-950;
+    }
+
+    .cyb-button-secondary {
+        @apply inline-flex items-center justify-center rounded-md border border-black/15 bg-white/70 px-5 py-3 text-sm font-semibold text-cyb-ink transition hover:border-cyb-gold hover:text-cyb-gold focus:outline-none focus:ring-2 focus:ring-cyb-gold focus:ring-offset-2 dark:border-white/15 dark:bg-white/5 dark:text-neutral-100 dark:focus:ring-offset-neutral-950;
+    }
+
+    .cyb-input {
+        @apply mt-1 block w-full rounded-md border border-black/15 bg-white px-3 py-2 text-sm text-cyb-ink shadow-sm transition placeholder:text-neutral-400 focus:border-cyb-gold focus:ring-cyb-gold dark:border-white/15 dark:bg-neutral-950 dark:text-neutral-100;
+    }
+
+    .cyb-table-wrapper {
+        @apply overflow-hidden rounded-lg border border-black/10 bg-white shadow-soft dark:border-white/10 dark:bg-neutral-900;
+    }
+
+    .cyb-table {
+        @apply min-w-full divide-y divide-black/10 text-left text-sm dark:divide-white/10;
+    }
+
+    .cyb-table thead {
+        @apply bg-neutral-50 text-xs uppercase tracking-wider text-neutral-500 dark:bg-white/[0.03] dark:text-neutral-400;
+    }
+
+    .cyb-table th {
+        @apply px-5 py-3 font-semibold;
+    }
+
+    .cyb-table td {
+        @apply px-5 py-4 align-middle text-neutral-700 dark:text-neutral-200;
+    }
+
+    .cyb-table tbody {
+        @apply divide-y divide-black/10 dark:divide-white/10;
+    }
+
+    .cyb-pill {
+        @apply inline-flex items-center rounded-full border border-cyb-gold/30 bg-cyb-gold/10 px-2.5 py-1 text-xs font-semibold text-cyb-bronze dark:text-cyb-amber;
+    }
+
     .navbar-active .hamburger div:first-child {
     @apply rotate-45 translate-y-1.5;
     }

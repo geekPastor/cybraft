@@ -19,21 +19,26 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('assets/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+        <script>
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
         <!-- Scripts -->
         <script defer src="{{ asset('custom.js') }}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-gray-800 bg-opacity-15">
+    <body class="font-sans antialiased">
         
         @include('layouts.navigation')
         
-        <div class="sm:ml-64 flex flex-col h-screen">
+        <div class="flex min-h-screen flex-col sm:ml-72">
 
-            <div class=" flex-grow flex-shrink-0">
+            <div class="flex-grow flex-shrink-0">
                 @if ($title != null)
-                    <header class="bg-white shadow">
-                        <div class="max-w-7xl mx-auto mt-14 py-6 px-4 sm:px-6 lg:px-8">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    <header class="border-b border-black/10 bg-white/70 backdrop-blur dark:border-white/10 dark:bg-neutral-950/70">
+                        <div class="cyb-container mt-16 py-6">
+                            <h2 class="text-xl font-semibold leading-tight text-cyb-ink dark:text-neutral-100">
                                 {{ __($title) }}
                             </h2>
                         </div>
@@ -41,8 +46,8 @@
                 @endif
                 <main>
                 
-                    <div class="pt-4">
-                        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                    <div class="py-6">
+                        <div class="cyb-container">
                             <x-flash-notifications></x-flash-notifications>
                             @if ($pageLink != null and $pageText != null)
                                 <div class="text-end mb-3">
@@ -62,8 +67,8 @@
                 </main>
             </div>
 
-            <footer class="bg-gray-300 flex-shrink-0 mt-3">
-                <div class="max-w-7xl mx-auto mt-3 p-4 sm:px-6 lg:px-8 text-center font-bold">
+            <footer class="mt-3 flex-shrink-0 border-t border-black/10 bg-white/70 dark:border-white/10 dark:bg-neutral-950/70">
+                <div class="cyb-container p-4 text-center text-sm font-semibold text-neutral-600 dark:text-neutral-400">
                     {{ Config::get('app.name') }} &copy; Tous droits réservés
                 </div>
             </footer>

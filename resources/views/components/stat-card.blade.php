@@ -1,5 +1,5 @@
 @props(['title', 'count'])
-<div class="bg-white rounded-lg p-3 font-bold text-center text-sm lg:text-lg">
-    <h1>{{ $title }}</h1>
-    <h2>{{ $count }}</h2>
+<div {{ $attributes->merge(['class' => 'cyb-card text-sm lg:text-lg']) }}>
+    <h1 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">{{ $title }}</h1>
+    <h2 class="mt-2 text-3xl font-semibold text-cyb-ink dark:text-neutral-100">{{ $count }}</h2>
 </div>

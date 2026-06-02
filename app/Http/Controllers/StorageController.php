@@ -9,7 +9,7 @@ use Illuminate\Http\UploadedFile;
 class StorageController extends Controller
 {
     private function uppload(UploadedFile $file){
-        return $file->store('public','public');
+        return $file->store('uploads','public');
     }
     public function index(UploadImageRequest $request){
         $data=$request->file("picture");

@@ -44,6 +44,8 @@ class updateRequest extends FormRequest
         'theads' => 'nullable|string|max:255|starts_with:https://',
         'telegram' => 'nullable|string|max:255|starts_with:https://',
         'whatsapp' => 'nullable|string|max:255|starts_with:https://',
+        'custom_name' => 'nullable|string|max:100',
+        'custom_url' => 'nullable|string|max:255|starts_with:https://',
         
         'files' => 'nullable',
         'files.*' => 'nullable|max:10240',
@@ -74,6 +76,7 @@ class updateRequest extends FormRequest
             'theads.starts_with' => 'Le lien doit commencer par https://',
             'telegram.starts_with' => 'Le lien doit commencer par https://',
             'whatsapp.starts_with' => 'Le lien doit commencer par https://',
+            'custom_url.starts_with' => 'Le lien personnalisé doit commencer par https://',
         ];
     }
 }

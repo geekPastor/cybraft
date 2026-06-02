@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => "flex justify-center"]) }}>
-    <div class="shadow-lg bg-white rounded-lg p-3 w-full sm:w-3/4">
+    <div class="cyb-surface w-full rounded-lg p-5">
         {{ $slot }}
     </div>
 </div>

@@ -1,9 +1,13 @@
 <x-app-layout title="Modification du mot de passe">
+    <div class="mx-auto max-w-2xl">
     <x-form-card>
-        <form action="{{ route('password.update') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST" class="space-y-5">
             @csrf
             @method('put')
-            <h1 class="text-lg font-bold mb-3">Modifier votre mot de passe</h1>
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-wider text-cyb-gold">Sécurité</p>
+                <h1 class="mt-2 text-2xl font-semibold text-cyb-ink dark:text-white">Modifier votre mot de passe</h1>
+            </div>
             <div>
                 <x-input-label for="password" :value="__('Mot de passe actuel')" />
                 <x-text-input id="password" class="block mt-1 w-full"
@@ -20,8 +24,11 @@
                                 required/>
                 <x-input-error :messages="$errors->get('new_password')" class="mt-2" />
             </div>
-            <x-primary-button>Enregistrer</x-primary-button>
+            <div class="flex justify-end border-t border-black/10 pt-5 dark:border-white/10">
+                <x-primary-button>Enregistrer</x-primary-button>
+            </div>
         </form>
     
     </x-form-card>
+    </div>
 </x-app-layout>

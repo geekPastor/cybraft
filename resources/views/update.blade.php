@@ -1,10 +1,14 @@
 <x-app-layout title="Modifiere vos informations">
-    <div class="bg-white p-8 rounded-lg shadow-lg m-8">
-        <h1 class="text-2xl font-bold mb-6 text-center">Remplissez les informations ci-dessous</h1>
-        <form action={{Route("profil.modif", $user->getRouteKey())}} method="POST" enctype="multipart/form-data">
+    <x-form-card>
+        <div class="mb-6">
+            <p class="text-sm font-semibold uppercase tracking-wider text-cyb-gold">Profil public</p>
+            <h1 class="mt-2 text-2xl font-semibold text-cyb-ink dark:text-white">Modifier mes informations</h1>
+            <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">Ces informations seront visibles sur votre profil public Cybcraft.</p>
+        </div>
+        <form action={{Route("profil.modif", $user->getRouteKey())}} method="POST" enctype="multipart/form-data" class="space-y-8">
             @csrf
             <div>
-                <h2 class="text-lg font-semibold">Mon Identité</h2>
+                <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">Mon Identité</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 items-center">
                     <div>
                         <x-input-label for="nom" class="block text-sm font-medium text-gray-700">Nom</x-input-label>
@@ -27,7 +31,7 @@
                 </div>
             </div>
             <div>
-                <h2 class="text-lg font-semibold">À Propos de Moi</h2>
+                <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">À Propos de Moi</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                     <div>
                         <x-input-label for="number">Numéro téléphone</x-input-label>
@@ -62,7 +66,7 @@
                 </div>
             </div>
             <div>
-                <h2 class="text-lg font-semibold">En savoir plus</h2>
+                <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">En savoir plus</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                     <div>
                         <x-input-label for="description" class="block text-sm font-medium text-gray-700">Description</x-input-label>
@@ -77,7 +81,7 @@
                 </div>
             </div>
             <div>
-                <h2 class="text-lg font-semibold">Liaison Réseaux Sociaux</h2>
+                <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">Liaison Réseaux Sociaux</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                     <div>
                         <x-input-label for="facebook" class="block text-sm font-medium text-gray-700">Facebook</x-input-label>
@@ -119,11 +123,23 @@
                         <x-text-input type="text" name="whatsapp" id="whatsapp" class="block mt-1 w-full" value="{{ old('whatsapp',$user->profil?->reseau->whatsapp ?? 'https://') }}"/>
                         <x-input-error :messages="$errors->get('whatsapp')" class="mt-2" />
                     </div>
+                    <div>
+                        <x-input-label for="custom_name" class="block text-sm font-medium text-gray-700">Réseau personnalisé (Nom)</x-input-label>
+                        <x-text-input type="text" name="custom_name" id="custom_name" placeholder="ex: Discord" class="block mt-1 w-full" value="{{ old('custom_name',$user->profil?->reseau->custom_name ?? '') }}"/>
+                        <p class="text-xs text-gray-500 mt-1">Indiquez le nom de votre réseau social personnalisé</p>
+                        <x-input-error :messages="$errors->get('custom_name')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input-label for="custom_url" class="block text-sm font-medium text-gray-700">Réseau personnalisé (Lien)</x-input-label>
+                        <x-text-input type="text" name="custom_url" id="custom_url" placeholder="https://example.com/your-profile" class="block mt-1 w-full" value="{{ old('custom_url',$user->profil?->reseau->custom_url ?? '') }}"/>
+                        <p class="text-xs text-gray-500 mt-1">Le lien doit commencer par https://</p>
+                        <x-input-error :messages="$errors->get('custom_url')" class="mt-2" />
+                    </div>
                 </div>
             </div>
-            <div class="mt-6">
+            <div class="flex justify-end border-t border-black/10 pt-5 dark:border-white/10">
                 <x-primary-button type="submit">Mettre à jour</x-primary-button>
             </div>
         </form>
-    </div>
+    </x-form-card>
 </x-app-layout>
