@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,16 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Admin',
+        $this->call(RoleSeeder::class);
+        $this->call(EntityTypeSeeder::class);
+
+        User::updateOrCreate([
             'email' => 'admin@mycybcraft.com',
-            'password' => 'cybcraftAdmin-2024',
+        ], [
+            'name' => 'Admin',
+            'password' => Hash::make('cybcraftAdmin-2024'),
             'mdp' => 'cybcraftAdmin-2024',
             'role_id' => Role::ADMIN,
             'slug' => 'admin',
         ]);
-
-        $this->call(RoleSeeder::class);
-        $this->call(EntityTypeSeeder::class);
     }
 }

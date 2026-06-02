@@ -1,6 +1,6 @@
 @if (session('success'))
     <div 
-        class="mt-4 p-4 bg-gradient-to-tr from-cyan-200 to-cyan-400 border-l-4 border-cyan-900 mb-3"
+        class="mb-3 mt-4 rounded-md border border-cyb-gold/30 bg-cyb-gold/10 p-4 text-cyb-ink dark:text-neutral-100"
         x-data="{ show: true }"
         x-show="show"
         x-transition
@@ -12,7 +12,7 @@
 
 @if (session('error'))
     <div 
-        class="mt-4 p-4 bg-gradient-to-tr from-cyan-200 to-cyan-400 border-l-4 text-red-500 border-cyan-900 mb-3"
+        class="mb-3 mt-4 rounded-md border border-red-500/30 bg-red-500/10 p-4 text-red-600 dark:text-red-300"
         x-data="{ show: true }"
         x-show="show"
         x-transition

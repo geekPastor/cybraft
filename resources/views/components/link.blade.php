@@ -1,3 +1,3 @@
-<a {{ $attributes->merge(['class' => 'text-blue-500 font-bold hover:underline']) }} wire:navigate>
+<a {{ $attributes->merge(['class' => 'font-semibold text-cyb-gold hover:underline']) }} wire:navigate>
     {{ $slot }}
 </a>

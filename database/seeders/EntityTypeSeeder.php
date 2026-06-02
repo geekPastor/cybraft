@@ -13,19 +13,13 @@ class EntityTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        EntityType::factory(4)->sequence(
-            [
-                'name' => 'établissement',
-            ],
-            [
-                'name' => 'entrepise',
-            ],
-            [
-                'name' => 'université',
-            ],
-            [
-                'name' => 'école',
-            ]
-        )->create();
+        foreach ([
+            1 => 'établissement',
+            2 => 'entreprise',
+            3 => 'université',
+            4 => 'école',
+        ] as $id => $name) {
+            EntityType::updateOrCreate(['id' => $id], ['name' => $name]);
+        }
     }
 }

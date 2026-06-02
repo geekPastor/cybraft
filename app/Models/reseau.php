@@ -20,6 +20,8 @@ class reseau extends Model
         'telegram',
         'whatsapp',
         'linkedin',
+        'custom_name',
+        'custom_url',
     ];
     public function profil()
     {

@@ -1,3 +1,3 @@
-<div class="bg-gradient-to-tr from-cyan-200 to-cyan-400 border-l-4 border-cyan-900 p-3 mt-3">
+<div class="mt-3 rounded-md border border-cyb-gold/30 bg-cyb-gold/10 p-3 text-cyb-ink dark:text-neutral-100">
     {{ $slot }}
 </div>

@@ -18,8 +18,8 @@ $original = $content;
 
 // Replace the line with the nullable type declaration
 $content = preg_replace(
-    '/(\s+)bool \$replace_single_chars_only = false\n(\s+)\): string \{/',
-    '${1}?bool $replace_single_chars_only = false' . "\n" . '${2}): string {',
+    '/(\s+)bool \$replace_single_chars_only = (false|null)\n(\s+)\): string \{/',
+    '${1}?bool $replace_single_chars_only = ${2}' . "\n" . '${3}): string {',
     $content
 );
 

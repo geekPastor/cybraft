@@ -57,19 +57,45 @@ class ProfilController extends Controller
             ]
         );
 
-        $validated['user_id'] = $user->id;
+        // Préparer les données du profil
+        $profilData = [
+            'user_id' => $user->id,
+            'profession' => $validated['profession'],
+            'bio' => $validated['description'], // Map description to bio
+            'sexe' => $validated['sexe'],
+            'number' => $validated['number'],
+            'number2' => $validated['number2'] ?? null,
+            'naissance' => $validated['naissance'],
+            'domicile' => $validated['domicile'] ?? null,
+            'competences' => $validated['competences'] ?? null,
+            'private_email' => $validated['private_email'] ?? null,
+        ];
+
         // Créer ou mettre à jour le profil
         $profil = Profil::updateOrCreate(
             ['user_id' => $user->id],
-            $validated
+            $profilData
         );
-        // Créer ou mettre à jour les identifiants reseaux
-        $profilData = $validated;
-        $profilData['profil_id'] = $profil->id;
 
+        // Préparer les données des réseaux sociaux
+        $reseauData = [
+            'profil_id' => $profil->id,
+            'facebook' => $validated['facebook'] ?? 'https://',
+            'twitter' => $validated['twitter'] ?? 'https://',
+            'instagram' => $validated['instagram'] ?? 'https://',
+            'linkedin' => $validated['linkedin'] ?? 'https://',
+            'tiktok' => $validated['tiktok'] ?? 'https://',
+            'theads' => $validated['theads'] ?? 'https://',
+            'telegram' => $validated['telegram'] ?? 'https://',
+            'whatsapp' => $validated['whatsapp'] ?? 'https://',
+            'custom_name' => $validated['custom_name'] ?? null,
+            'custom_url' => $validated['custom_url'] ?? null,
+        ];
+
+        // Créer ou mettre à jour les identifiants reseaux
         $reseau = reseau::updateOrCreate(
             ['profil_id' => $profil->id],
-            $profilData
+            $reseauData
         );
         return to_route('profil.compte', Auth::user()->getRouteKey())->with("success", "modification reussie");
     }
