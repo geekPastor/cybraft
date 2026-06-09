@@ -164,18 +164,38 @@
                         <a href="https://wa.me/message/MXYG42F32WEZE1" class="cyb-button-secondary w-fit">Parler à Cybcraft</a>
                     </div>
 
+                    <style>
+                        .card-flip-wrap { position: relative; }
+                        .card-flip-wrap .card-recto {
+                            opacity: 1;
+                            transition: opacity 0.5s ease;
+                        }
+                        .card-flip-wrap .card-verso {
+                            position: absolute;
+                            inset: 0;
+                            opacity: 0;
+                            transition: opacity 0.5s ease;
+                        }
+                        .card-flip-wrap:hover .card-recto { opacity: 0; }
+                        .card-flip-wrap:hover .card-verso { opacity: 1; }
+                    </style>
+
                     <div class="mt-10 grid gap-5 md:grid-cols-3">
                         @foreach ([
-                            ['Essentiel', 'PVC durable, léger, parfait pour démarrer.', 'cybCard/essential.jpg'],
-                            ['Standard', 'Finition élégante pour profils commerciaux.', 'cybCard/standard.jpg'],
-                            ['Metal', 'Présence forte, finition premium et toucher dense.', 'cybCard/metal.jpg'],
-                        ] as [$name, $copy, $image])
-                            <article class="group">
-                                <div class="aspect-[1.58/1] overflow-hidden rounded-lg bg-neutral-900 shadow-soft">
-                                    <img src="{{ asset($image) }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" alt="Carte Cybcraft {{ $name }}">
+                            ['Essentiel', 'PVC durable, léger, parfait pour démarrer.', 'cybCard/essential.jpg', 'cybCard/essential-verso.jpg', '39,99 $'],
+                            ['Standard', 'Finition élégante pour profils commerciaux.', 'cybCard/standard.jpg', 'cybCard/standard-verso.jpg', '49,99 $'],
+                            ['Metal', 'Présence forte, finition premium et toucher dense.', 'cybCard/metal.jpg', 'cybCard/metal-verso.jpg', '69,99 $'],
+                        ] as [$name, $copy, $image, $imageVerso, $price])
+                            <article>
+                                <div class="card-flip-wrap aspect-[1.58/1] overflow-hidden rounded-lg bg-neutral-900 shadow-soft">
+                                    <img src="{{ asset($image) }}" class="card-recto h-full w-full object-cover" alt="Carte Cybcraft {{ $name }} (Recto)">
+                                    <img src="{{ asset($imageVerso) }}" class="card-verso h-full w-full object-cover" alt="Carte Cybcraft {{ $name }} (Verso)">
                                 </div>
                                 <div class="mt-4">
-                                    <h3 class="text-xl font-semibold">{{ $name }}</h3>
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-xl font-semibold">{{ $name }}</h3>
+                                        <span class="text-lg font-bold" style="color: #c8942f;">{{ $price }}</span>
+                                    </div>
                                     <p class="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">{{ $copy }}</p>
                                 </div>
                             </article>

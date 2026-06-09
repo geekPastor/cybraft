@@ -10,15 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $data = [];
 
         if (Auth::user()->role_id == Role::ADMIN) {
-            $data['users'] = User::count();
+            $data['usersCount'] = User::count();
             $data['admins'] = User::where('role_id', Role::ADMIN)->count();
             $data['members'] = User::where('role_id', Role::USER)->count();
-            $data['recentUsers'] = User::with('role')->latest()->limit(5)->get();
+            
+            $search = $request->input('search');
+            $data['users'] = User::query()
+                ->with('role')
+                ->when($search, function ($query, $search) {
+                    $query->where(function ($q) use ($search) {
+                        $q->where('name', 'like', '%' . $search . '%')
+                          ->orWhere('email', 'like', '%' . $search . '%')
+                          ->orWhere('slug', 'like', '%' . $search . '%');
+                    });
+                })
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
         } else {
             $user = Auth::user()->load(['entity.services', 'contacts', 'files']);
 

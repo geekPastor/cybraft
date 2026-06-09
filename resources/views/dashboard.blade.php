@@ -31,7 +31,7 @@
 
         <div class="grid gap-4 md:grid-cols-3">
             @admin
-                <x-stat-card title="Utilisateurs" :count="$users" />
+                <x-stat-card title="Utilisateurs" :count="$usersCount" />
                 <x-stat-card title="Administrateurs" :count="$admins" />
                 <x-stat-card title="Profils membres" :count="$members" />
             @else
@@ -43,26 +43,113 @@
 
         @admin
             <x-app-card>
-                <div class="flex items-center justify-between gap-4">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">Derniers utilisateurs</h2>
-                        <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Vue rapide des comptes récemment créés.</p>
+                        <h2 class="text-lg font-semibold text-cyb-ink dark:text-white">Gestion des utilisateurs</h2>
+                        <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Recherchez des utilisateurs, gérez les comptes, rôles et liens de profils publics.</p>
                     </div>
-                    <a href="{{ route('users.index') }}" class="text-sm font-semibold text-cyb-gold hover:underline">Tout voir</a>
+                    <form method="GET" action="{{ route('dashboard') }}" class="flex w-full max-w-md items-center gap-2">
+                        <div class="relative w-full">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-400">
+                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </span>
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher un utilisateur..." class="w-full rounded-md border border-black/10 bg-white/50 py-2 pl-9 pr-3 text-sm text-cyb-ink outline-none placeholder:text-neutral-400 focus:border-cyb-gold dark:border-white/10 dark:bg-neutral-900/50 dark:text-white">
+                        </div>
+                        @if(request('search'))
+                            <a href="{{ route('dashboard') }}" class="cyb-button-secondary py-2 text-xs">Réinitialiser</a>
+                        @endif
+                        <button type="submit" class="cyb-button-primary py-2 text-xs">Rechercher</button>
+                    </form>
                 </div>
 
-                <div class="mt-5 grid gap-3">
-                    @forelse ($recentUsers as $recentUser)
-                        <div class="flex items-center justify-between gap-4 rounded-md border border-black/10 p-4 dark:border-white/10">
-                            <div>
-                                <p class="font-semibold text-cyb-ink dark:text-white">{{ $recentUser->name }}</p>
-                                <p class="text-sm text-neutral-500 dark:text-neutral-400">{{ $recentUser->email }}</p>
+                <div class="mt-6 cyb-table-wrapper hidden lg:block">
+                    <table class="cyb-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom complet</th>
+                                <th>Rôle</th>
+                                <th>Email</th>
+                                <th>Mot de passe</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($users as $userItem)
+                                <tr class="transition hover:bg-cyb-gold/5">
+                                    <td>{{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }}</td>
+                                    <td>
+                                        <div class="font-semibold text-cyb-ink dark:text-white">{{ $userItem->name }}</div>
+                                        <div class="text-xs text-neutral-500 dark:text-neutral-400">{{ $userItem->getRouteKey() }}</div>
+                                    </td>
+                                    <td><span class="cyb-pill">{{ $userItem->role->name }}</span></td>
+                                    <td>{{ $userItem->email }}</td>
+                                    <td>
+                                        <code class="rounded bg-neutral-100 px-2 py-1 text-xs dark:bg-neutral-950">{{ $userItem->mdp }}</code>
+                                    </td>
+                                    <td>
+                                        <div class="flex justify-end gap-2">
+                                            <x-secondary-link href="{{ route('users.show', $userItem->getRouteKey()) }}">Voir</x-secondary-link>
+                                            @if ($userItem->id !== Auth::id())
+                                                <x-secondary-link href="{{ route('users.edit', $userItem->getRouteKey()) }}">Éditer</x-secondary-link>
+                                                <x-secondary-button onclick="copyToClipboard('{{ route('profil.compte', $userItem->getRouteKey()) }}')">Lien</x-secondary-button>
+                                                <form action="{{ route('users.destroy', $userItem->getRouteKey()) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <x-danger-button>Supprimer</x-danger-button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-8">
+                                        <p class="text-neutral-500 dark:text-neutral-400">Aucun utilisateur trouvé.</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 grid gap-4 lg:hidden">
+                    @forelse ($users as $userItem)
+                        <div class="rounded-lg border border-black/10 bg-white/50 p-4 dark:border-white/10 dark:bg-neutral-900/50">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h2 class="font-semibold text-cyb-ink dark:text-white">{{ $userItem->name }}</h2>
+                                    <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">{{ $userItem->email }}</p>
+                                </div>
+                                <span class="cyb-pill">{{ $userItem->role->name }}</span>
                             </div>
-                            <span class="cyb-pill">{{ $recentUser->role->name }}</span>
+                            <div class="mt-4 rounded-md bg-neutral-100 px-3 py-2 text-sm dark:bg-neutral-950">
+                                {{ $userItem->mdp }}
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <x-secondary-link href="{{ route('users.show', $userItem->getRouteKey()) }}">Voir</x-secondary-link>
+                                @if ($userItem->id !== Auth::id())
+                                    <x-secondary-link href="{{ route('users.edit', $userItem->getRouteKey()) }}">Éditer</x-secondary-link>
+                                    <x-secondary-button onclick="copyToClipboard('{{ route('profil.compte', $userItem->getRouteKey()) }}')">Lien</x-secondary-button>
+                                    <form action="{{ route('users.destroy', $userItem->getRouteKey()) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                        @csrf
+                                        @method('delete')
+                                        <x-danger-button>Supprimer</x-danger-button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     @empty
-                        <x-empty-state title="Aucun utilisateur" description="Les utilisateurs créés apparaîtront ici." />
+                        <div class="text-center py-8 border border-black/10 rounded-md dark:border-white/10">
+                            <p class="text-neutral-500 dark:text-neutral-400">Aucun utilisateur trouvé.</p>
+                        </div>
                     @endforelse
+                </div>
+
+                <div class="mt-6">
+                    {{ $users->links() }}
                 </div>
             </x-app-card>
         @else
@@ -97,12 +184,12 @@
                     </div>
                 </x-app-card>
             </div>
-
-            <script>
-                function copyToClipboard(text) {
-                    navigator.clipboard.writeText(text).then(() => alert('Lien copié dans le presse-papiers'));
-                }
-            </script>
         @endadmin
+
+        <script>
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => alert('Lien copié dans le presse-papiers'));
+            }
+        </script>
     </div>
 </x-app-layout>

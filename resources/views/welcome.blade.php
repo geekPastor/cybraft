@@ -75,8 +75,10 @@
                 </div>
                 <button id="closeMenu" type="button" class="text-neutral-500 hover:text-cyb-gold">Fermer</button>
             </div>
-            <div class="mx-auto mt-5 grid size-40 place-items-center overflow-hidden rounded-md border border-black/10 bg-white p-2 dark:border-white/10">
-                {!! $qrCode !!}
+            <div class="mx-auto mt-5 flex size-40 items-center justify-center overflow-hidden rounded-md border border-black/10 bg-white p-2 dark:border-white/10">
+                <div class="size-full [&>svg]:size-full flex items-center justify-center">
+                    {!! $qrCode !!}
+                </div>
             </div>
             <div class="mt-5 grid gap-2">
                 @auth
